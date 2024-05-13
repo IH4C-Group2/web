@@ -9,8 +9,8 @@
 const Config = {
   // cryptoSecret: Buffer.from(CRYPTO_SECRET, 'base64'),
   cookie: {
-    session: '__discope',
-    language: 'language',
+    session: '__ih14a_2',
+    language: 'ja',
   },
 } as const;
 
