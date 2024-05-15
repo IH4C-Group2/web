@@ -15,7 +15,7 @@ const Form: FC<PropsWithChildren<Props>> = ({ children, action}) => {
 
     if (res) redirect('/dashboard');
 
-    SetError(!res);
+    SetError(false);
   }
 
   return (
