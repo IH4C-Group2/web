@@ -1,5 +1,6 @@
 'use client';
 
+import { redirect } from 'next/navigation';
 import { useState, type FC, type PropsWithChildren } from 'react';
 
 type Props = {
@@ -10,7 +11,11 @@ const Form: FC<PropsWithChildren<Props>> = ({ children, action}) => {
   const [error, SetError] = useState(false);
 
   const handleSubmit = async (formdata: FormData) => {
-    SetError(!(await action(formdata)));
+    const res = await action(formdata);
+
+    if (res) redirect('/dashboard');
+
+    SetError(false);
   }
 
   return (
