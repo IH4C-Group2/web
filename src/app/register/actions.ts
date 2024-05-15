@@ -1,8 +1,11 @@
 'use server';
 
+import { cookies } from 'next/headers';
 import { SHA256 } from 'crypto-js';
+import { sign } from 'jsonwebtoken';
 
 import { prisma } from "@/utils/prisma";
+import Config from '@/Config';
 
 export const register = async (formData: FormData) => {
   const name = formData.get('name')?.toString();
@@ -24,6 +27,13 @@ export const register = async (formData: FormData) => {
   });
 
   if (!user) return false;
+
+  const token = sign({
+    id: user.id,
+    name: user.name
+  }, Config.jwtSecret);
+
+  cookies().set(Config.cookie.session, token);
 
   return true;
 }
