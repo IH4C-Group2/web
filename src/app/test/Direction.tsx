@@ -3,51 +3,26 @@
 import React, { useState, useCallback } from "react";
 import { DirectionsRenderer, DirectionsService } from "@react-google-maps/api";
 
-export default function Direction() {
-  const origin = { lat: 35.6915744, lng: 139.6965973 };
-  // 始点を指定する
-  const destination = { lat: 35.6811124, lng: 139.764516 };
-  // 終点を指定する
-  // const transitPoints = [
-  //   {
-  //     location: { lat: 43.66406, lng: 142.85445 },
-  //     stopover: true,
-  //   },
-  //   { location: { lat: 43.906742, lng: 144.79872 } },
-  //   { location: { lat: 43.286533, lng: 143.18524 } },
-  // ];
-  // 経由地を（順不同で）指定する
+interface DirectionProps {
+  lat: number;
+  lng: number;
+}
+
+export default function Direction(props: DirectionProps) {
+  const origin = { lat: props.lat, lng: props.lng }; // A地点: 現在地
+  const destination = { lat: 35.681236, lng: 139.767125 }; // B地点: 東京駅
 
   const [currentDirection, setCurrentDirection] = useState(null);
-  // ここにDirectionsServiceへのAPIコールで得られたルート情報を保存する
+  const [distance, setDistance] = useState<string>('');
+  const [duration, setDuration] = useState<string>('');
 
   const directionsCallback = useCallback((googleResponse) => {
-    if (googleResponse) {
-      if (currentDirection) {
-        if (
-          googleResponse.status === "OK" &&
-          googleResponse.geocoded_waypoints.length !==
-            currentDirection.geocoded_waypoints.length
-        ) {
-          console.log("ルートが変更されたのでstateを更新する");
-          setCurrentDirection(googleResponse);
-        } else {
-          console.log("前回と同じルートのためstateを更新しない");
-        }
-      } else {
-        if (googleResponse.status === "OK") {
-          console.log("初めてルートが設定されたため、stateを更新する");
-          setCurrentDirection(googleResponse);
-        } else {
-          console.log("前回と同じルートのためstateを更新しない");
-        }
-      }
+    if (googleResponse && googleResponse.status === "OK") {
+      setCurrentDirection(googleResponse);
+      setDistance(googleResponse.routes[0].legs[0].distance.text);
+      setDuration(googleResponse.routes[0].legs[0].duration.text);
     }
-  });
-  // (1) DirectionsServiceコンポーネントはレンダーされるとルート検索し、結果をcallbackとして返す。
-  // (2) このAPIレスポンスを今回のようにstateに保存すると、stateが変わったことにより、DirecitonsServiceコンポーネントが再度レンダーされる。
-  // (3) DirectionsServiceコンポーネントがレンダーされると再度APIコールを行う。
-  // 上記(1)~(3)の無限ループを防ぐため、(3)の結果がstateと変わらなければstateを更新しない、という処理を上記に実装した
+  }, []);
 
   return (
     <>
@@ -56,24 +31,21 @@ export default function Direction() {
           origin,
           destination,
           travelMode: "DRIVING",
-          // 走行モードを指定する。今回は自動車に設定
           optimizeWaypoints: true,
-          // 経由地の順序を最適化する場合はtrueに設定する
-          // waypoints: transitPoints,
         }}
         callback={directionsCallback}
       />
-      {currentDirection !== null && (
+      {currentDirection && (
         <DirectionsRenderer
           options={{
             directions: currentDirection,
           }}
         />
-        // DirectionsServiceのAPI検索の結果としてcurrenctDirectionがあれば、その結果をDirectionsRendererで表示する。
-        // 予めルート情報を持っていれば、DirecitonsServiceでAPIコールする必要はない。
       )}
+      <div>
+        <p>距離: {distance}</p>
+        <p>移動時間: {duration}</p>
+      </div>
     </>
   );
 }
-
-
