@@ -13,10 +13,69 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int    @id @default(autoincrement())
-  email     String @unique
+model HitachiUser {
+  hitachiId Int    @id @default(autoincrement())
+  loginId   String @unique
   password  String
-  name      String
-  companyId Int
+  userName  String
+}
+
+model FactoryUser {
+  factoryUserId Int           @id @default(autoincrement())
+  loginId       String        @unique
+  password      String
+  factoryName   String
+  companyId     String?
+  factoryInfos  FactoryInfo[] @relation(name: "factoryUsers")
+}
+
+model FactoryInfo {
+  factoryInfoId     Int         @id @default(autoincrement())
+  factoryUserId     Int
+  factoryDetailName String
+  address           String
+  responsibleName   String
+  responsibleTel    String
+  officetTel        String
+  factoryUserIds    FactoryUser @relation(name: "factoryUsers", fields: [factoryUserId], references: [factoryUserId])
+}
+
+model TransportationUser {
+  transportationUserId  Int                    @id @default(autoincrement())
+  loginId               String                 @unique
+  password              String
+  UserName              String
+  companyId             String?
+  transportationDrivers TransportationDriver[] @relation(name: "transportationUsers")
+}
+
+model TransportationDriver {
+  drivertId             Int                @id @default(autoincrement())
+  transportationUserId  Int
+  employeeNum           String
+  driverName            String
+  driverTel             String
+  driverLicense         String
+  transportationUserIds TransportationUser @relation(name: "transportationUsers", fields: [transportationUserId], references: [transportationUserId])
+}
+
+model Company {
+  companyId       Int    @id @default(autoincrement())
+  companyName     String
+  address         String
+  responsibleName String
+  responsibleTel  String
+  officeTel       String
+  type            Int
+}
+
+model ScheduleList {
+  scheduleListId   Int      @id @default(autoincrement())
+  orderId          Int
+  driverId         Int
+  temperature      String
+  originFactoryId  Int
+  landingFactoryId Int
+  startDatetime    DateTime
+  endDatetime      DateTime
 }
