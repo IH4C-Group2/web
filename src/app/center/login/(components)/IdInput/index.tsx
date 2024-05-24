@@ -3,7 +3,7 @@ import type { FC } from 'react';
 const IdInput: FC = () => {
   return (
     <div>
-      <input type='text' name='Id' />
+      <input type='text' name='id' />
     </div>
   );
 };
