@@ -13,13 +13,15 @@ const Login: FC = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <h1>ログイン画面</h1>
+    <div className=" min-h-screen">
+      <h1 className="text-2xl font-bold text-center bg-blue-900 text-white p-4 rounded-t-lg">管理者用ログイン</h1>
+      <div className="flex items-center justify-center">
       <Form action={handleSubmit}>
         <EmailInput />
         <PasswordInput />
-        <button type="submit">ログイン</button>
+        <button type="submit" className="font-bold py-2 px-4 bg-sky-500 text-white">ログイン</button>
       </Form>
+      </div>
     </div>
   );
 };
