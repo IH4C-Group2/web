@@ -36,7 +36,7 @@ model FactoryInfo {
   address           String
   responsibleName   String
   responsibleTel    String
-  officetTel        String
+  officeTel        String
   factoryUserIds    FactoryUser @relation(name: "factoryUsers", fields: [factoryUserId], references: [factoryUserId])
 }
 
