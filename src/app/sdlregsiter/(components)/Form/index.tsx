@@ -7,7 +7,7 @@ type Props = {
   action: (formData: FormData) => Promise<boolean>;
 };
 
-const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
+const Form: FC<PropsWithChildren<Props>> = ({ children, action}) => {
   const [error, SetError] = useState(false);
 
   const handleSubmit = async (formdata: FormData) => {
@@ -15,7 +15,7 @@ const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
 
     if (res) redirect('/dashboard');
 
-    SetError(!res);
+    SetError(false);
   }
 
   return (
@@ -23,7 +23,7 @@ const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
       <form action={handleSubmit}>{children}</form>
       {error && (
         <div>
-          <p>パスワード又はメールアドレスが違います</p>
+          <p>入力フォーマットが違います</p>
         </div>
       )}
     </>
