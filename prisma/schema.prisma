@@ -52,11 +52,14 @@ model TransportationUser {
 model TransportationDriver {
   drivertId             Int                @id @default(autoincrement())
   transportationUserId  Int
+  loginId               String             @unique
+  password              String
   employeeNum           String
   driverName            String
   driverTel             String
   driverLicense         String
   transportationUserIds TransportationUser @relation(name: "transportationUsers", fields: [transportationUserId], references: [transportationUserId])
+  scheduleLists         ScheduleList[]
 }
 
 model Company {
@@ -70,12 +73,15 @@ model Company {
 }
 
 model ScheduleList {
-  scheduleListId   Int      @id @default(autoincrement())
+  scheduleListId   Int                  @id @default(autoincrement())
   orderId          Int
+  driver           TransportationDriver @relation(fields: [driverId], references: [drivertId])
   driverId         Int
   temperature      String
   originFactoryId  Int
   landingFactoryId Int
   startDatetime    DateTime
   endDatetime      DateTime
+
+  @@unique([orderId])
 }
