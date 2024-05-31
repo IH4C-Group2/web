@@ -16,8 +16,8 @@ const Login: FC = () => {
     <div className="min-h-screen">
       <h1>管理者用ログイン</h1>
       <Form action={handleSubmit}>
-        <IdInput />
-        <PasswordInput />
+        ID:<IdInput />
+        Pass:<PasswordInput />
         <button type="submit">ログイン</button>
       </Form>
     </div>
