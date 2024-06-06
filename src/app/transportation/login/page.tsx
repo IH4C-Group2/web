@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 
 import { login } from './actions';
-import Form from './(components)/Form';
-import IdInput from './(components)/IdInput';
-import PasswordInput from './(components)/PasswordInput';
+import Form from '@/app/layouts/LoginForm/DefaultForm';
+import IdInput from '@/app/layouts/LoginForm/IdInput';
+import PasswordInput from '@/app/layouts/LoginForm//PasswordInput';
 
 const Login: FC = () => {
   const handleSubmit = async (formdata: FormData) => {
