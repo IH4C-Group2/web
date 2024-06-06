@@ -9,13 +9,13 @@ import Config from '@/Config';
 
 export const login = async (formData: FormData) => {
   const password = formData.get('password')?.toString();
-  const email = formData.get('email')?.toString();
+  const id = formData.get('id')?.toString();
 
-  if (!password || !email) return false;
+  if (!password || !id) return false;
 
-  const user = await prisma.user.findUnique({
+  const user = await prisma.factoryUser.findUnique({
     where: {
-      email,
+      loginId: id,
       password: SHA256(password).toString()
     }
   });
@@ -23,8 +23,8 @@ export const login = async (formData: FormData) => {
   if (!user) return false;
 
   const token = sign({
-    id: user.id,
-    name: user.name
+    id: user.factoryUserId,
+    type: 'factory'
   }, Config.jwtSecret);
 
   cookies().set(Config.cookie.session, token);
