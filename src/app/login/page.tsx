@@ -1,16 +1,16 @@
 import type { FC } from 'react';
 
 import { login } from './actions';
-import Form from './(components)/Form';
-import EmailInput from './(components)/EmailInput';
-import PasswordInput from './(components)/PasswordInput';
+import Form from '@/app/layouts/Form/DefaultForm';
+import EmailInput from '@/app/layouts/Form/EmailInput';
+import PasswordInput from '@/app/layouts/Form/PasswordInput';
 import Header from './(components)/Header';
-import LoginButton from './(components)/LoginButton';
+import LoginButton from '@/app/layouts/Form/LoginButton';
 
 const Login: FC = () => {
   const handleSubmit = async (formdata: FormData) => {
     'use server';
-    
+
     return await login(formdata);
   };
 
