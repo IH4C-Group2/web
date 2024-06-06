@@ -1,14 +1,14 @@
 import type { FC } from 'react';
 
 import { login } from './actions';
-import Form from './(components)/Form';
-import IdInput from './(components)/IdInput';
-import PasswordInput from './(components)/PasswordInput';
+import Form from '@/app/layouts/Form/DefaultForm';
+import IdInput from '@/app/layouts/Form/IdInput';
+import PasswordInput from '@/app/layouts/Form/PasswordInput';
 
 const Login: FC = () => {
   const handleSubmit = async (formdata: FormData) => {
     'use server';
-    
+
     return await login(formdata);
   };
 
