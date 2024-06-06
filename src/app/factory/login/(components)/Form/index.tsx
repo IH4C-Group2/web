@@ -13,7 +13,7 @@ const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
   const handleSubmit = async (formdata: FormData) => {
     const res = await action(formdata);
 
-    if (res) redirect('/transportation/dashboard');
+    if (res) redirect('/factory/dashboard');
 
     SetError(false);
   }

@@ -7,6 +7,8 @@ import EmployeeNumInput from './(components)/EmployeeNumInput';
 import DriverNameInput from './(components)/DriverNameInput';
 import DriverTelInput from './(components)/DriverTelInput';
 import DriverLicenseInput from './(components)/DriverLicenseInput';
+import LoginIdInput from './(components)/LoginIdInput';
+import PasswordInput from './(components)/PasswordInput';
 
 const Register: FC = () => {
   const handleSubmit = async (formdata: FormData) => {
@@ -23,6 +25,8 @@ const Register: FC = () => {
         名前:<DriverNameInput />
         電話番号:<DriverTelInput />
         運転免許:<DriverLicenseInput />
+        ログインID:<LoginIdInput />
+        パスワード:<PasswordInput />
         <button type="submit">登録</button>
       </Form>
     </div>

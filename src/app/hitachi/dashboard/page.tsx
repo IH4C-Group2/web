@@ -2,10 +2,10 @@ import type { FC } from 'react';
 
 import { redirect } from 'next/navigation';
 
-import { getUser } from '@/getters/user';
+import { getHitachiUser } from '@/getters/user';
 
 const Dashboard: FC = async () => {
-  const user = await getUser();
+  const user = await getHitachiUser();
 
   if (!user) redirect('/hitachi/login');
 

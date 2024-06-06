@@ -9,8 +9,10 @@ export const register = async (formData: FormData) => {
   const driverName = formData.get('driverName')?.toString();
   const driverTel = formData.get('driverTel')?.toString();
   const driverLicense = formData.get('driverLicense')?.toString();
+  const loginId = formData.get('loginId')?.toString();
+  const password = formData.get('password')?.toString();
 
-  if (!employeeNum || !driverName || !driverTel || !driverLicense) return false;
+  if (!employeeNum || !driverName || !driverTel || !driverLicense || !loginId || !password) return false;
 
   const transportationDriver = await prisma.transportationDriver.create({
     data: {
@@ -19,6 +21,8 @@ export const register = async (formData: FormData) => {
       employeeNum,
       driverLicense,
       transportationUserId: Number(transportationUser?.transportationUserId),
+      loginId,
+      password
     }
   });
 
