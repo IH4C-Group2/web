@@ -50,7 +50,7 @@ model TransportationUser {
 }
 
 model TransportationDriver {
-  drivertId             Int                @id @default(autoincrement())
+  driverId             Int                @id @default(autoincrement())
   transportationUserId  Int
   loginId               String             @unique
   password              String
@@ -75,7 +75,7 @@ model Company {
 model ScheduleList {
   scheduleListId   Int                  @id @default(autoincrement())
   orderId          Int
-  driver           TransportationDriver @relation(fields: [driverId], references: [drivertId])
+  driver           TransportationDriver @relation(fields: [driverId], references: [driverId])
   driverId         Int
   temperature      String
   originFactoryId  Int

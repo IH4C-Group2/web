@@ -1,11 +1,6 @@
 'use server';
 
-import { PrismaClient } from '@prisma/client';
-
-// Prismaのログを有効化して初期化
-const prisma = new PrismaClient({
-  log: ['query', 'info', 'warn'],
-});
+import { prisma } from "@/utils/prisma";
 
 // ドライバースケジュールを取得し、DriverSchedule型に変換する関数
 export const getAllDriverSchedules = async () => {
