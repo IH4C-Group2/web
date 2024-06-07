@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import Link from 'next/link';
 import Logout from '@/app/layouts/Logout';
-import Factorykanri from '@/app/layouts/Factory/factory_kanri';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIdCard, faClockRotateLeft, } from '@fortawesome/free-solid-svg-icons';
 
