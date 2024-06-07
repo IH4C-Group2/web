@@ -5,7 +5,6 @@ import Factorykanri from '@/app/layouts/Factory/factory_kanri';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouseUser, faBoxesStacked, faBuildingUser,} from '@fortawesome/free-solid-svg-icons';
 
-
 const Dashboard: FC = () => {
   return (
     <div className="min-h-screen flex flex-col items-center bg-white">

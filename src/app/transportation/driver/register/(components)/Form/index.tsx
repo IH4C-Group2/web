@@ -13,7 +13,7 @@ const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
   const handleSubmit = async (formdata: FormData) => {
     const res = await action(formdata);
 
-    if (res) redirect('/hitachi/dashboard');
+    if (!res) redirect('/dashboard');
 
     SetError(false);
   }
@@ -23,7 +23,7 @@ const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
       <form action={handleSubmit}>{children}</form>
       {error && (
         <div>
-          <p>パスワード又はメールアドレスが違います</p>
+          <p>入力フォーマットが違います</p>
         </div>
       )}
     </>
