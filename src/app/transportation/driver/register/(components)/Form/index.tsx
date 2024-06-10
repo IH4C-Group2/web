@@ -1,7 +1,8 @@
 'use client';
 
 import type { ErrorType } from '../../actions';
-import { redirect } from 'next/navigation';
+
+import { useRouter } from 'next/navigation';
 import { useState, type FC, type PropsWithChildren } from 'react';
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
 };
 
 const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
+  const router = useRouter()
   const [error, setError] = useState<ErrorType>({
     status: false,
     message: ''
@@ -17,7 +19,7 @@ const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
   const handleSubmit = async (formdata: FormData) => {
     const res = await action(formdata);
 
-    if (res.status) redirect('/transportation/dashboard');
+    if (res.status) router.push('/transportation/dashboard');
       
     setError(res);
   }
