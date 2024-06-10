@@ -8,8 +8,7 @@ export type ErrorType = {
   message: string;
 }
 
-export const register = async (formData: FormData): Promise<Array<ErrorType>> => {
-  const errors: ErrorType[] = [];
+export const register = async (formData: FormData): Promise<ErrorType> => {
   const transportationUser = await getTransportationUser();
   const employeeNum = formData.get('employeeNum')?.toString();
   const driverName = formData.get('driverName')?.toString();
@@ -19,11 +18,10 @@ export const register = async (formData: FormData): Promise<Array<ErrorType>> =>
   const password = formData.get('password')?.toString();
 
   if (!employeeNum || !driverName || !driverTel || !driverLicense || !loginId || !password) {
-    errors.push({
+    return {
       status: false,
       message: "入力フォーマットが違います"
-    });
-    return errors;
+    };
   }
 
   const existingLogins = await prisma.transportationDriver.findMany({
@@ -32,11 +30,10 @@ export const register = async (formData: FormData): Promise<Array<ErrorType>> =>
 
   for (const existingLogin of existingLogins) {
     if (existingLogin.loginId === loginId) {
-      errors.push({
+      return {
         status: false,
         message: "このIDはすでに存在します"
-      });
-      return errors;
+      };
     }
   }
 
@@ -54,18 +51,21 @@ export const register = async (formData: FormData): Promise<Array<ErrorType>> =>
     });
 
     if (!transportationDriver) {
-      errors.push({
+      return {
         status: false,
         message: "追加に失敗しました"
-      });
+      };
     }
-    return errors;
+
+    return {
+      status: true,
+      message: ""
+    };
 
   } catch (error) {
-    errors.push({
+    return {
       status: false,
       message: "データベースエラーが発生しました"
-    });
-    return errors;
+    };
   }
 }

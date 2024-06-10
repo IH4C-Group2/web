@@ -5,26 +5,29 @@ import { redirect } from 'next/navigation';
 import { useState, type FC, type PropsWithChildren } from 'react';
 
 type Props = {
-  action: (formData: FormData) => Promise<Array<ErrorType>>;
+  action: (formData: FormData) => Promise<ErrorType>;
 };
 
 const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
-  const [error, setError] = useState<ErrorType | null>(null);
+  const [error, setError] = useState<ErrorType>({
+    status: false,
+    message: ''
+  });
 
   const handleSubmit = async (formdata: FormData) => {
     const res = await action(formdata);
 
-    if (res) {
-      setError(res[0]);
-    } else {
+    if (res.status) {
       redirect('/transportation/dashboard');
+    } else {
+      setError(res);
     }
   }
 
   return (
     <>
       <form onSubmit={(e) => { e.preventDefault(); handleSubmit(new FormData(e.currentTarget)) }}>{children}</form>
-      {error && (
+      {!error?.status && (
         <div>
           <p>{error.message}</p>
         </div>
