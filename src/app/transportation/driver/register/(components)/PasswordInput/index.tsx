@@ -3,7 +3,7 @@ import type { FC } from 'react';
 const PasswordInput: FC = () => {
   return (
     <div>
-      <input type='text' name='password' />
+      <input type='password' name='password' />
     </div>
   );
 };

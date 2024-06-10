@@ -1,33 +1,36 @@
 'use client';
 
+import type { ErrorType } from '../../actions';
 import { redirect } from 'next/navigation';
 import { useState, type FC, type PropsWithChildren } from 'react';
 
 type Props = {
-  action: (formData: FormData) => Promise<boolean>;
+  action: (formData: FormData) => Promise<Array<ErrorType>>;
 };
 
 const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
-  const [error, SetError] = useState(false);
+  const [error, setError] = useState<ErrorType | null>(null);
 
   const handleSubmit = async (formdata: FormData) => {
     const res = await action(formdata);
 
-    if (!res) redirect('/dashboard');
-
-    SetError(false);
+    if (res) {
+      setError(res[0]);
+    } else {
+      redirect('/transportation/dashboard');
+    }
   }
 
   return (
     <>
-      <form action={handleSubmit}>{children}</form>
+      <form onSubmit={(e) => { e.preventDefault(); handleSubmit(new FormData(e.currentTarget)) }}>{children}</form>
       {error && (
         <div>
-          <p>入力フォーマットが違います</p>
+          <p>{error.message}</p>
         </div>
       )}
     </>
-  )
+  );
 }
 
 export default Form;
