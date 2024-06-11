@@ -18,7 +18,7 @@ const Register: FC = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div>
       <h1>ドライバー登録画面</h1>
       <Form action={handleSubmit}>
         社員番号:<EmployeeNumInput />
