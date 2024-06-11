@@ -26,3 +26,15 @@ export const getAllDrivers = async () => {
     throw error; // エラーを再度投げることで、page.tsxでキャッチできるようにする
   }
 };
+
+// ドライバーを削除する関数
+export const deleteDriver = async (driverId: number) => {
+  try {
+    await prisma.transportationDriver.delete({
+      where: { drivertId: driverId },
+    });
+  } catch (error) {
+    console.error('Error deleting driver:', error);
+    throw error;
+  }
+};
