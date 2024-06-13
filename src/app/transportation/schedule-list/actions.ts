@@ -27,3 +27,15 @@ export const getAllDriverSchedules = async () => {
     throw error; // エラーを再度投げることで、page.tsxでキャッチできるようにする
   }
 };
+
+// 登録したスケジュールを削除する関数
+export const deleteschedule = async (scheduleListId: number) => {
+  try {
+    await prisma.scheduleList.delete({
+      where: { scheduleListId: scheduleListId },
+    });
+  } catch (error) {
+    console.error('Error deleting driver:', error);
+    throw error;
+  }
+};

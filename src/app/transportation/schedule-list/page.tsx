@@ -4,7 +4,7 @@
 
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation'; // 修正: next/navigationからuseRouterをインポート
-import { getAllDriverSchedules } from './actions';
+import { getAllDriverSchedules, deleteschedule } from './actions';
 
 type DriverSchedule = {
   id: number;
@@ -41,6 +41,16 @@ const DriverSchedulesPage: FC = () => {
     router.push(`/sdledit/${id}`);
   };
 
+    //スケジュール削除関数
+    const handleDelete = async (id: number) => {
+      try {
+        await deleteschedule(id);
+        setSchedules(schedules.filter(schedule => schedule.scheduleListId !== id)); // ドライバーリストを更新
+      } catch (error) {
+        console.error('Error deleting driver:', error);
+      }
+    };
+
   return (
     <div className="min-h-screen">
       <p>ドライバースケジュール一覧</p>
@@ -55,6 +65,7 @@ const DriverSchedulesPage: FC = () => {
             <th className="border px-4 py-2 text-center">開始日時</th>
             <th className="border px-4 py-2 text-center">終了地点</th>
             <th className="border px-4 py-2 text-center">終了日時</th>
+            <th className="border px-4 py-2 text-center">削除</th>
           </tr>
         </thead>
         <tbody>
@@ -68,6 +79,7 @@ const DriverSchedulesPage: FC = () => {
               <td className="border px-4 py-2 text-center">{new Date(schedule.startDateTime).toLocaleString()}</td>
               <td className="border px-4 py-2 text-center">{schedule.endLocation}</td>
               <td className="border px-4 py-2 text-center">{new Date(schedule.endDateTime).toLocaleString()}</td>
+              <td className="border px-4 py-2 text-center"><button onClick={() => handleDelete(schedule.scheduleListId)}>削除</button></td>
             </tr>
           ))}
         </tbody>
