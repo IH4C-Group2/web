@@ -2,7 +2,7 @@
 
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation'; // 修正: next/navigationからuseRouterをインポート
-import { getAllDrivers } from './actions';
+import { getAllDrivers, deleteDriver } from './actions';
 
 type Driver = {
   driverId: number;
@@ -35,28 +35,37 @@ const DriverList: FC = () => {
     router.push(`/driveredit/${id}`);
   };
 
+  // ドライバー削除関数
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteDriver(id);
+      setDrivers(drivers.filter(driver => driver.driverId !== id)); // ドライバーリストを更新
+    } catch (error) {
+      console.error('Error deleting driver:', error);
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <p>ドライバー一覧</p>
       <table className="min-w-full bg-white">
         <thead>
           <tr>
-            {/* <th className="border px-4 py-2 text-center">ドライバーID</th> */}
             <th className="border px-4 py-2 text-center">社員番号</th>
             <th className="border px-4 py-2 text-center">ドライバー名</th>
             <th className="border px-4 py-2 text-center">電話番号</th>
             <th className="border px-4 py-2 text-center">免許証</th>
+            <th className="border px-4 py-2 text-center">削除</th>
           </tr>
         </thead>
         <tbody>
           {drivers.map(driver => (
             <tr key={driver.driverId}>
-              {/* <td className="border px-4 py-2 text-center">{driver.driverId}</td> */}
               <td className="border px-4 py-2 text-center">{driver.employeeNum}</td>
               <td className="border px-4 py-2 text-center">{driver.driverName}</td>
               <td className="border px-4 py-2 text-center">{driver.driverTel}</td>
               <td className="border px-4 py-2 text-center">{driver.driverLicense}</td>
-              <button>削除</button>
+              <td className="border px-4 py-2 text-center"><button onClick={() => handleDelete(driver.driverId)}>削除</button></td>
             </tr>
           ))}
         </tbody>

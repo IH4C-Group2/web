@@ -6,6 +6,7 @@ import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation'; // 修正: next/navigationからuseRouterをインポート
 import { getAllDriverSchedules, deleteschedule } from './actions';
 
+
 type DriverSchedule = {
   id: number;
   scheduleListId: number;
@@ -50,6 +51,7 @@ const DriverSchedulesPage: FC = () => {
         console.error('Error deleting driver:', error);
       }
     };
+
 
   return (
     <div className="min-h-screen">

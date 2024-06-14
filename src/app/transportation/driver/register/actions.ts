@@ -2,6 +2,7 @@
 
 import { prisma } from "@/utils/prisma";
 import { getTransportationUser } from '@/getters/user';
+import { SHA256 } from 'crypto-js';
 
 export type ErrorType = {
   status: boolean;
@@ -46,7 +47,7 @@ export const register = async (formData: FormData): Promise<ErrorType> => {
         driverLicense,
         transportationUserId: Number(transportationUser?.transportationUserId),
         loginId,
-        password
+        password: SHA256(password).toString()
       }
     });
 
