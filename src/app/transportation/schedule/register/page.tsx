@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { SDL } from './actions';
+import { Schedule } from './actions';
 import Form from "./(components)/Form";
 import DriverIdInput from "./(components)/DriverIdInput";
 import OrderIdInput from "./(components)/OrderIdInput";
@@ -11,11 +11,11 @@ import EndLocationInput from "./(components)/EndLocationInput";
 import EndDateTimeInput from "./(components)/EndDateTimeInput";
 import SubmitInputBtn from "./(components)/SubmitInputBtn";
 
-const SdlRegister: FC = () => {
+const ScheduleRegister: FC = () => {
   const handleSubmit = async (formData: FormData) => {
     'use server';
 
-    const result = await SDL(formData);
+    const result = await Schedule(formData);
     return result;
   };
 
@@ -36,4 +36,4 @@ const SdlRegister: FC = () => {
   );
 };
 
-export default SdlRegister;
+export default ScheduleRegister;

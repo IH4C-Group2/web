@@ -24,6 +24,7 @@ const DriverSchedulesPage: FC = async () => {
             <th className="border px-4 py-2 text-center">開始日時</th>
             <th className="border px-4 py-2 text-center">終了地点</th>
             <th className="border px-4 py-2 text-center">終了日時</th>
+            <th className="border px-4 py-2 text-center">編集</th>
             <th className="border px-4 py-2 text-center">削除</th>
           </tr>
         </thead>
