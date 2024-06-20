@@ -54,7 +54,7 @@ model TransportationDriver {
   transportationUserId  Int
   loginId               String             @unique
   password              String
-  employeeNum           String
+  employeeNum           Int
   driverName            String
   driverTel             String
   driverLicense         String
