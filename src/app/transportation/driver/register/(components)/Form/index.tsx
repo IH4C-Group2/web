@@ -18,7 +18,7 @@ const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
   const handleSubmit = async (formdata: FormData) => {
     const res = await action(formdata);
 
-    if (res.status) redirect('/transportation/driver/driver-list');
+    if (res.status) redirect('/transportation/driver/list');
 
     setError(res);
   }

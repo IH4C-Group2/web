@@ -1,11 +1,14 @@
 'use server';
 
 import { prisma } from "@/utils/prisma";
+import { getTransportationUser } from '@/getters/user';
 
 // ドライバー一覧を取得する関数
 export const getAllDrivers = async () => {
+  const transportationUser = await getTransportationUser();
   try {
     const drivers = await prisma.transportationDriver.findMany({
+      where: { transportationUserId: transportationUser?.transportationUserId },
       select: {
         drivertId: true,
         employeeNum: true,
