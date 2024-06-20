@@ -17,7 +17,7 @@ export const factoryRegister = async (formData: FormData) => {
 
     //factoryUserにloginIdが存在するかどうか
     const loginIdState = await prisma.factoryUser.findUnique({
-        where: {loginId: loginId}
+        where: {loginId}
     });
 
     //同じloginIdがなかったら（nullだったら）
