@@ -1,49 +1,48 @@
-import type { FC } from "react";
+import type { FC } from 'react';
+
 import { schedule } from './actions';
-import Form from "./(components)/Form";
-import DriverIdInput from "./(components)/DriverIdInput";
-import OrderIdInput from "./(components)/OrderIdInput";
-import TemperatureInput from "./(components)/TemperatureInput";
-import StartLocationInput from "./(components)/StartLocationInput";
-import StartDateTimeInput from "./(components)/StartDateTimeInput";
-import EndLocationInput from "./(components)/EndLocationInput";
-import EndDateTimeInput from "./(components)/EndDateTimeInput";
-import SubmitInputBtn from "./(components)/SubmitInputBtn";
+import Form from './(components)/Form';
+import DriverIdInput from './(components)/DriverIdInput';
+import OrderIdInput from './(components)/OrderIdInput';
+import TemperatureInput from './(components)/TemperatureInput';
+import StartLocationInput from './(components)/StartLocationInput';
+import StartDateTimeInput from './(components)/StartDateTimeInput';
+import EndLocationInput from './(components)/EndLocationInput';
+import EndDateTimeInput from './(components)/EndDateTimeInput';
+import SubmitInputBtn from './(components)/SubmitInputBtn';
+import { prisma } from '@/utils/prisma';
 
 type Props = {
-  pramas: { scheduleListId: string };
-}
-const UpdateSchedule: FC<Props> = ({pramas: { scheduleListId }}) => {
+  params: { scheduleListId: string };
+};
 
+const UpdateSchedule: FC<Props> = async ({ params: { scheduleListId } }) => {
   const handleSubmit = async (formData: FormData) => {
-    console.log("フォームの入力内容:", {
-      driverId: formData.get('DriverIdInput'),
-      orderId: formData.get('OrderIdInput'),
-      Temperature: formData.get('TemperatureInput'),
-      StartLocation: formData.get('StartLocationInput'),
-      StartDateTime: formData.get('StartDateTimeInput'),
-      EndLocation: formData.get('EndLocationInput'),
-      EndDateTime: formData.get('EndDateTimeInput'),
-      scheduleListId: scheduleListId,
-    });
-    const result = await schedule(formData,scheduleListId); // scheduleListId を引数として渡す
-    return result;
+    'use server';
+
+    return await schedule(formData, scheduleListId);
   };
+
+  const schedule = await prisma.scheduleList.findUnique({
+    where: { scheduleListId: Number(scheduleListId) },
+  });
+
+  console.log(schedule);
 
   return (
     <div className="min-h-screen">
       <h1>ドライバースケジュール更新</h1>
-      {scheduleListId ? (
+      {schedule ? (
         <>
           <p>スケジュールID: {scheduleListId}</p>
           <Form action={handleSubmit}>
-            <DriverIdInput />
-            <OrderIdInput />
-            <TemperatureInput />
+            <DriverIdInput defaultDriverId={schedule.driverId} />
+            <OrderIdInput defaultOrderId={schedule.orderId} />
+            <TemperatureInput defaultTemperatureId={schedule.temperature} />
             <StartLocationInput />
-            <StartDateTimeInput />
+            <StartDateTimeInput defaultStartDateTimeId={schedule.startDatetime} />
             <EndLocationInput />
-            <EndDateTimeInput />
+            <EndDateTimeInput defaultEndDateTime={schedule.endDatetime}/>
             <SubmitInputBtn />
           </Form>
         </>

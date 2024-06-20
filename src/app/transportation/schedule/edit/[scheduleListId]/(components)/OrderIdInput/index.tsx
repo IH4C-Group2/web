@@ -1,10 +1,14 @@
 import type { FC } from 'react';
 
-const OrderIdInput: FC = () => {
+type Props = {
+  defaultOrderId: number;
+};
+
+const OrderIdInput: FC<Props> = ({ defaultOrderId }) => {
   return (
     <div>
-      <label>オーダーID：</label>
-        <input type="number" name="OrderIdInput" />
+      <label>オーダーID: </label>
+      <input type="number" name="OrderIdInput" defaultValue={defaultOrderId} />
     </div>
   );
 };

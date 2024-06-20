@@ -1,10 +1,14 @@
 import type { FC } from 'react';
 
-const TemperatureInput: FC = () => {
+type Props = {
+  defaultTemperatureId: string;
+};
+
+const TemperatureInput: FC<Props> = ({ defaultTemperatureId }) => {
   return (
     <div>
       <label>貨物内温度：</label>
-        <input type="text" name="TemperatureInput" />
+        <input type="text" name="TemperatureInput" defaultValue={defaultTemperatureId} />
     </div>
   );
 };

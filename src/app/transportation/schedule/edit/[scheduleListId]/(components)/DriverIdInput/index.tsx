@@ -1,12 +1,16 @@
 import type { FC } from "react";
 
-const DriverIdInput: FC = () => {
-    return (
-        <div>
-            <label>ドライバーID：</label>
-            <input type="text" name="DriverIdInput" />
-        </div>
-    );
+type Props = {
+  defaultDriverId: number;
+};
+
+const DriverIdInput: FC<Props> = ({ defaultDriverId }) => {
+  return (
+    <div>
+      <label>ドライバーID: </label>
+      <input type="text" name="DriverIdInput" defaultValue={defaultDriverId}/>
+    </div>
+  );
 };
 
 export default DriverIdInput;
