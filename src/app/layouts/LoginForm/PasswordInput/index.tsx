@@ -2,9 +2,7 @@ import type { FC } from 'react';
 
 const PasswordInput: FC = () => {
   return (
-    <div>
-      <input type='password' name='password' className="w-full py-1 border border-black"/>
-    </div>
+      <input type='text' name='id' className='w-8/12 py-1 border-2 border-black bg-gray-200'/>
   );
 };
 
