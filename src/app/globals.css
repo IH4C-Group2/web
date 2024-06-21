@@ -1,8 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/**
-:root {
 
 /*:root {
   --foreground-rgb: 0, 0, 0;
@@ -33,4 +31,3 @@ body {
     text-wrap: balance;
   }
 }
-**/

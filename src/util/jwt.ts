@@ -8,7 +8,7 @@ import Config from '@/Config';
 
 type RawJWTPayload = {
   id: number;
-  name: string;
+  type: string;
 };
 
 type VerifyResult =
