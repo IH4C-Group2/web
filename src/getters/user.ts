@@ -37,7 +37,7 @@ export const getTransportationDriver = cache(async () => {
   const result = await verifyToken();
   if (!result.success) return null;
 
-  const transportationDriver = await prisma.transportationDriver.findUnique({ where: { drivertId: result.payload.id } });
+  const transportationDriver = await prisma.transportationDriver.findUnique({ where: { driverId: result.payload.id } });
   if (!transportationDriver) return null;
 
   return transportationDriver;
