@@ -6,7 +6,9 @@ import { prisma } from '@/utils/prisma';
 import DelteButton from './(components)/delete';
 
 const DriverSchedulesPage: FC = async () => {
-  const schedules = await prisma.scheduleList.findMany();
+  const schedules = await prisma.scheduleList.findMany({
+    include: { driver: true, originFactory: true }
+  });
 
   if (!schedules) return notFound();
 
@@ -17,7 +19,7 @@ const DriverSchedulesPage: FC = async () => {
         <thead>
           <tr>
             <th className="border px-4 py-2 text-center">スケジュールID</th>
-            <th className="border px-4 py-2 text-center">ドライバーID</th>
+            <th className="border px-4 py-2 text-center">ドライバー</th>
             <th className="border px-4 py-2 text-center">オーダーID</th>
             <th className="border px-4 py-2 text-center">温度</th>
             <th className="border px-4 py-2 text-center">開始地点</th>
@@ -32,10 +34,10 @@ const DriverSchedulesPage: FC = async () => {
           {schedules.map(schedule => (
             <tr key={schedule.scheduleListId}>
               <td className="border px-4 py-2 text-center">{schedule.scheduleListId}</td>
-              <td className="border px-4 py-2 text-center">{schedule.driverId}</td>
+              <td className="border px-4 py-2 text-center">{schedule.driver.driverName}</td>
               <td className="border px-4 py-2 text-center">{schedule.orderId}</td>
               <td className="border px-4 py-2 text-center">{schedule.temperature}</td>
-              <td className="border px-4 py-2 text-center">{schedule.originFactoryId}</td>
+              <td className="border px-4 py-2 text-center">{schedule.originFactory.factoryDetailName}</td>
               <td className="border px-4 py-2 text-center">{new Date(schedule.startDatetime).toLocaleString()}</td>
               <td className="border px-4 py-2 text-center">{schedule.landingFactoryId}</td>
               <td className="border px-4 py-2 text-center">{new Date(schedule.endDatetime).toLocaleString()}</td>
