@@ -11,17 +11,9 @@ export const edit = async (formData: FormData, scheduleListId: string) => {
   const landingFactoryId = formData.get('landingFactory')?.toString();
   const startDatetime = formData.get('startDatetime')?.toString();
   const endDatetime = formData.get('endDatetime')?.toString();
-  //const scheduleListId = formData.get('scheduleListId')?.toString();
 
   // 必須フィールドが全て存在するか確認
   if (!driverId || !orderId || !temperature || !originFactoryId || !landingFactoryId || !startDatetime || !endDatetime || !scheduleListId) {
-    console.log(driverId);
-    console.log(orderId);
-    console.log(temperature);
-    console.log(originFactoryId);
-    console.log(landingFactoryId);
-    console.log(startDatetime);
-    console.log(endDatetime);
     return false;
   }
 
@@ -39,11 +31,23 @@ export const edit = async (formData: FormData, scheduleListId: string) => {
         scheduleListId: parsedScheduleListId,
       },
       data: {
-        driverId: parsedDriverId,
+        driver: {
+          connect: {
+            driverId: parsedDriverId,
+          }
+        },
         orderId: parsedOrderId,
         temperature,
-        originFactoryId: parsedOriginFactoryId,
-        landingFactoryId: parsedLandingFactoryId,
+        originFactory: {
+          connect: {
+            factoryInfoId: parsedOriginFactoryId,
+          }
+        },
+        landingFactory: {
+          connect: {
+            factoryInfoId: parsedLandingFactoryId,
+          }
+        },
         startDatetime: new Date(startDatetime),
         endDatetime: new Date(endDatetime),
       },

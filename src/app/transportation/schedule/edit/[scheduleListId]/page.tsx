@@ -20,9 +20,7 @@ const UpdateSchedule: FC<Props> = async ({ params: { scheduleListId } }) => {
   const handleSubmit = async (formData: FormData) => {
     'use server';
 
-    const res = await edit(formData, scheduleListId);
-    console.log(res);
-    return res;
+    return await edit(formData, scheduleListId);
   };
 
   const schedule = await prisma.scheduleList.findUnique({

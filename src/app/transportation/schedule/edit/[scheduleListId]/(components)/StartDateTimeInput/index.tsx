@@ -7,7 +7,6 @@ type Props = {
 };
 
 const StartDateTimeInput: FC<Props> = ({ defaultStartDateTimeId }) => {
-  console.log(typeof defaultStartDateTimeId.toISOString());
   return (
     <div>
       <label>作業開始予定：</label>

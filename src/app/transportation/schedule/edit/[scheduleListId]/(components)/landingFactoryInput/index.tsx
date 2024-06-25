@@ -11,7 +11,7 @@ const EndLocationInput: FC<Props> = ({ factorys }) => {
       <label>到着地：</label>
       <select name="landingFactory" id="">
         {factorys.map((factory) => (
-          <option key={factory.factoryInfoId}>{factory.factoryDetailName}</option>
+          <option key={factory.factoryInfoId} value={factory.factoryInfoId}>{factory.factoryDetailName}</option>
         ))}
       </select>
     </div>

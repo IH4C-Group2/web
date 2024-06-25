@@ -11,7 +11,7 @@ const OriginFactoryId: FC<Props> = ({ factorys }) => {
       <label>出発地：</label>
       <select name="originFactory" id="">
         {factorys.map((factory) => (
-          <option key={factory.factoryInfoId}>{factory.factoryDetailName}</option>
+          <option key={factory.factoryInfoId} value={factory.factoryInfoId}>{factory.factoryDetailName}</option>
         ))}
       </select>
     </div>
