@@ -30,15 +30,17 @@ model FactoryUser {
 }
 
 model FactoryInfo {
-  factoryInfoId     Int            @id @default(autoincrement())
+  factoryInfoId     Int         @id @default(autoincrement())
   factoryUserId     Int
   factoryDetailName String
   address           String
   responsibleName   String
   responsibleTel    String
   officeTel         String
-  factoryUserIds    FactoryUser    @relation(name: "factoryUsers", fields: [factoryUserId], references: [factoryUserId])
-  scheduleLists     ScheduleList[]
+  factoryUserIds    FactoryUser @relation(name: "factoryUsers", fields: [factoryUserId], references: [factoryUserId])
+
+  originSchedules  ScheduleList[] @relation(name: "OriginFactory")
+  landingSchedules ScheduleList[] @relation(name: "LandingFactory")
 }
 
 model TransportationUser {
@@ -55,7 +57,7 @@ model TransportationDriver {
   transportationUserId  Int
   loginId               String             @unique
   password              String
-  employeeNum           Int
+  employeeNum           String
   driverName            String
   driverTel             String
   driverLicense         String
@@ -79,11 +81,13 @@ model ScheduleList {
   driver           TransportationDriver @relation(fields: [driverId], references: [driverId])
   driverId         Int
   temperature      String
-  originFactory    FactoryInfo          @relation(fields: [originFactoryId], references: [factoryInfoId])
   originFactoryId  Int
   landingFactoryId Int
   startDatetime    DateTime
   endDatetime      DateTime
+
+  originFactory  FactoryInfo @relation(name: "OriginFactory", fields: [originFactoryId], references: [factoryInfoId])
+  landingFactory FactoryInfo @relation(name: "LandingFactory", fields: [landingFactoryId], references: [factoryInfoId])
 
   @@unique([orderId])
 }
