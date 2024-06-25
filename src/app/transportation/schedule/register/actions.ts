@@ -2,7 +2,7 @@
 
 import { prisma } from "@/utils/prisma";
 
-export const SDL = async (formData: FormData) => {
+export const Schedule = async (formData: FormData) => {
   // formDataから値を取得
   const driverId = formData.get('DriverIdInput')?.toString();
   const orderId = formData.get('OrderIdInput')?.toString();
@@ -26,7 +26,7 @@ export const SDL = async (formData: FormData) => {
 
   // 新しいスケジュールを作成
   try {
-    const sdl = await prisma.scheduleList.create({
+    const InsertSchedule = await prisma.scheduleList.create({
       data: {
         driverId: parsedDriverId,
         orderId: parsedOrderId,
