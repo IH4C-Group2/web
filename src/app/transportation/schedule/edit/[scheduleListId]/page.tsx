@@ -27,7 +27,7 @@ const UpdateSchedule: FC<Props> = async ({ params: { scheduleListId } }) => {
     where: { scheduleListId: Number(scheduleListId) },
   });
 
-  console.log(schedule);
+  const factorys = await prisma.factoryInfo.findMany();
 
   return (
     <div className="min-h-screen">
@@ -39,7 +39,7 @@ const UpdateSchedule: FC<Props> = async ({ params: { scheduleListId } }) => {
             <DriverIdInput defaultDriverId={schedule.driverId} />
             <OrderIdInput defaultOrderId={schedule.orderId} />
             <TemperatureInput defaultTemperatureId={schedule.temperature} />
-            <StartLocationInput />
+            <StartLocationInput factorys={factorys} />
             <StartDateTimeInput defaultStartDateTimeId={schedule.startDatetime} />
             <EndLocationInput />
             <EndDateTimeInput defaultEndDateTime={schedule.endDatetime}/>

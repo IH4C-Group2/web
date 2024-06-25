@@ -1,4 +1,4 @@
-import type { User } from '@prisma/client';
+import type { FactoryInfo } from '@prisma/client';
 
 import { PrismaClient } from '@prisma/client';
 
@@ -8,4 +8,4 @@ export const prisma = globalForPrisma.prisma || new PrismaClient();
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
-export type { User };
+export type { FactoryInfo };
