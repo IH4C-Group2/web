@@ -1,13 +1,16 @@
 'use server';
 
 import { prisma } from "@/utils/prisma";
+import { getTransportationUser } from '@/getters/user';
 
 // ドライバー一覧を取得する関数
 export const getAllDrivers = async () => {
+  const transportationUser = await getTransportationUser();
   try {
     const drivers = await prisma.transportationDriver.findMany({
+      where: { transportationUserId: transportationUser?.transportationUserId },
       select: {
-        drivertId: true,
+        driverId: true,
         employeeNum: true,
         driverName: true,
         driverTel: true,
@@ -15,7 +18,7 @@ export const getAllDrivers = async () => {
       }
     });
     return drivers.map(driver => ({
-      driverId: driver.drivertId,
+      driverId: driver.driverId,
       employeeNum: driver.employeeNum,
       driverName: driver.driverName,
       driverTel: driver.driverTel,
@@ -31,7 +34,7 @@ export const getAllDrivers = async () => {
 export const deleteDriver = async (driverId: number) => {
   try {
     await prisma.transportationDriver.delete({
-      where: { drivertId: driverId },
+      where: { driverId: driverId },
     });
   } catch (error) {
     console.error('Error deleting driver:', error);

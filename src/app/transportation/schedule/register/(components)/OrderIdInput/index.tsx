@@ -3,8 +3,8 @@ import type { FC } from 'react';
 const OrderIdInput: FC = () => {
   return (
     <div>
-      <label>オーダーID：</label>
-        <input type="number" name="OrderIdInput" />
+      
+        <input type="number" name="OrderIdInput" className="border border-black"/>
     </div>
   );
 };

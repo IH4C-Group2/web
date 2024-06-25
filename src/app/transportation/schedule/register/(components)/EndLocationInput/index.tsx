@@ -3,8 +3,8 @@ import type { FC } from 'react';
 const EndLocationInput: FC = () => {
   return (
     <div>
-      <label>到着地：</label>
-      <input type='text' name='EndLocationInput' />
+      
+      <input type='text' name='EndLocationInput' className="border border-black"/>
     </div>
   );
 };
