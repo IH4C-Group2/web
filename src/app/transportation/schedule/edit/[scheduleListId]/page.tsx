@@ -1,13 +1,13 @@
 import type { FC } from 'react';
 
-import { schedule } from './actions';
+import { edit } from './actions';
 import Form from './(components)/Form';
 import DriverIdInput from './(components)/DriverIdInput';
 import OrderIdInput from './(components)/OrderIdInput';
 import TemperatureInput from './(components)/TemperatureInput';
-import StartLocationInput from './(components)/StartLocationInput';
+import StartLocationInput from './(components)/OriginFactoryInput';
 import StartDateTimeInput from './(components)/StartDateTimeInput';
-import EndLocationInput from './(components)/EndLocationInput';
+import EndLocationInput from './(components)/landingFactoryInput';
 import EndDateTimeInput from './(components)/EndDateTimeInput';
 import SubmitInputBtn from './(components)/SubmitInputBtn';
 import { prisma } from '@/utils/prisma';
@@ -20,7 +20,9 @@ const UpdateSchedule: FC<Props> = async ({ params: { scheduleListId } }) => {
   const handleSubmit = async (formData: FormData) => {
     'use server';
 
-    return await schedule(formData, scheduleListId);
+    const res = await edit(formData, scheduleListId);
+    console.log(res);
+    return res;
   };
 
   const schedule = await prisma.scheduleList.findUnique({
@@ -41,7 +43,7 @@ const UpdateSchedule: FC<Props> = async ({ params: { scheduleListId } }) => {
             <TemperatureInput defaultTemperatureId={schedule.temperature} />
             <StartLocationInput factorys={factorys} />
             <StartDateTimeInput defaultStartDateTimeId={schedule.startDatetime} />
-            <EndLocationInput />
+            <EndLocationInput factorys={factorys} />
             <EndDateTimeInput defaultEndDateTime={schedule.endDatetime}/>
             <SubmitInputBtn />
           </Form>

@@ -1,18 +1,27 @@
+import { revalidatePath } from 'next/cache';
+
 import { prisma } from "@/utils/prisma";
 
-export const schedule = async (formData: FormData, scheduleListId: string) => {
+export const edit = async (formData: FormData, scheduleListId: string) => {
   // formDataから値を取得
   const driverId = formData.get('driverId')?.toString();
   const orderId = formData.get('orderId')?.toString();
   const temperature = formData.get('temperature')?.toString();
-  const originFactoryId = formData.get('originFactoryId')?.toString();
-  const landingFactoryId = formData.get('landingFactoryId')?.toString();
+  const originFactoryId = formData.get('originFactory')?.toString();
+  const landingFactoryId = formData.get('landingFactory')?.toString();
   const startDatetime = formData.get('startDatetime')?.toString();
   const endDatetime = formData.get('endDatetime')?.toString();
   //const scheduleListId = formData.get('scheduleListId')?.toString();
 
   // 必須フィールドが全て存在するか確認
   if (!driverId || !orderId || !temperature || !originFactoryId || !landingFactoryId || !startDatetime || !endDatetime || !scheduleListId) {
+    console.log(driverId);
+    console.log(orderId);
+    console.log(temperature);
+    console.log(originFactoryId);
+    console.log(landingFactoryId);
+    console.log(startDatetime);
+    console.log(endDatetime);
     return false;
   }
 
@@ -25,7 +34,7 @@ export const schedule = async (formData: FormData, scheduleListId: string) => {
 
   // スケジュールを更新
   try {
-    const updatedSchedule = await prisma.scheduleList.update({
+    await prisma.scheduleList.update({
       where: {
         scheduleListId: parsedScheduleListId,
       },
@@ -40,9 +49,10 @@ export const schedule = async (formData: FormData, scheduleListId: string) => {
       },
     });
 
-    return true; // 更新成功
+    revalidatePath(`/transportation/schedule/list/`, 'layout');
+    return true;
   } catch (error) {
     console.error("Error updating schedule:", error);
-    return false; // 更新失敗
+    return false;
   }
 };

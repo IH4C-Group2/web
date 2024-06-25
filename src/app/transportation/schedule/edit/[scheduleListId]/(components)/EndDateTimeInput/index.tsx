@@ -11,7 +11,7 @@ const EndDateTimeInput: FC<Props> = ({ defaultEndDateTime }) => {
   return (
     <div>
       <label>作業終了予定：</label>
-        <input type="datetime-local" name="EndDateTimeInput" defaultValue={toDateTimeLocalString(defaultEndDateTime)}/>
+        <input type="datetime-local" name="endDatetime" defaultValue={toDateTimeLocalString(defaultEndDateTime)}/>
     </div>
   );
 };

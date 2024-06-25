@@ -11,7 +11,7 @@ const StartDateTimeInput: FC<Props> = ({ defaultStartDateTimeId }) => {
   return (
     <div>
       <label>作業開始予定：</label>
-      <input type="datetime-local" name="StartDateTimeInput" defaultValue={toDateTimeLocalString(defaultStartDateTimeId)} />
+      <input type="datetime-local" name="startDatetime" defaultValue={toDateTimeLocalString(defaultStartDateTimeId)} />
     </div>
   );
 };

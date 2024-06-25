@@ -8,7 +8,7 @@ const DriverIdInput: FC<Props> = ({ defaultDriverId }) => {
   return (
     <div>
       <label>ドライバーID: </label>
-      <input type="text" name="DriverIdInput" defaultValue={defaultDriverId}/>
+      <input type="text" name="driverId" defaultValue={defaultDriverId}/>
     </div>
   );
 };

@@ -8,7 +8,7 @@ const OrderIdInput: FC<Props> = ({ defaultOrderId }) => {
   return (
     <div>
       <label>オーダーID: </label>
-      <input type="number" name="OrderIdInput" defaultValue={defaultOrderId} />
+      <input type="number" name="orderId" defaultValue={defaultOrderId} />
     </div>
   );
 };
