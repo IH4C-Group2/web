@@ -7,7 +7,7 @@ import DelteButton from './(components)/delete';
 
 const DriverSchedulesPage: FC = async () => {
   const schedules = await prisma.scheduleList.findMany({
-    include: { driver: true, originFactory: true }
+    include: { driver: true, originFactory: true, landingFactory: true }
   });
 
   if (!schedules) return notFound();
@@ -39,7 +39,7 @@ const DriverSchedulesPage: FC = async () => {
               <td className="border px-4 py-2 text-center">{schedule.temperature}</td>
               <td className="border px-4 py-2 text-center">{schedule.originFactory.factoryDetailName}</td>
               <td className="border px-4 py-2 text-center">{new Date(schedule.startDatetime).toLocaleString()}</td>
-              <td className="border px-4 py-2 text-center">{schedule.landingFactoryId}</td>
+              <td className="border px-4 py-2 text-center">{schedule.landingFactory.factoryDetailName}</td>
               <td className="border px-4 py-2 text-center">{new Date(schedule.endDatetime).toLocaleString()}</td>
               <td className="border px-4 py-2 text-center"><Link href={`/transportation/schedule/edit/${schedule.scheduleListId}`} >編集</Link></td>
               <td className="border px-4 py-2 text-center"><DelteButton id={schedule.scheduleListId} /></td>
