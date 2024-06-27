@@ -6,7 +6,9 @@ import { prisma } from '@/utils/prisma';
 import DelteButton from './(components)/delete';
 
 const DriverSchedulesPage: FC = async () => {
-  const schedules = await prisma.scheduleList.findMany();
+  const schedules = await prisma.scheduleList.findMany({
+    include: { driver: true, originFactory: true, landingFactory: true }
+  });
 
   if (!schedules) return notFound();
 
