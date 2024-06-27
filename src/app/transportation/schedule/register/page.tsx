@@ -1,17 +1,17 @@
-import type { FC } from "react";
+import type { FC } from 'react';
 
 import { prisma } from '@/utils/prisma';
 
 import { Schedule } from './actions';
-import Form from "./(components)/Form";
-import DriverInput from "./(components)/DriverInput";
-import OrderIdInput from "./(components)/OrderIdInput";
-import TemperatureInput from "./(components)/TemperatureInput";
-import StartLocationInput from "./(components)/StartLocationInput";
-import StartDateTimeInput from "./(components)/StartDateTimeInput";
-import EndLocationInput from "./(components)/EndLocationInput";
-import EndDateTimeInput from "./(components)/EndDateTimeInput";
-import SubmitInputBtn from "./(components)/SubmitInputBtn";
+import Form from './(components)/Form';
+import DriverInput from './(components)/DriverInput';
+import OrderIdInput from './(components)/OrderIdInput';
+import TemperatureInput from './(components)/TemperatureInput';
+import StartLocationInput from './(components)/StartLocationInput';
+import StartDateTimeInput from './(components)/StartDateTimeInput';
+import EndLocationInput from './(components)/EndLocationInput';
+import EndDateTimeInput from './(components)/EndDateTimeInput';
+import SubmitInputBtn from './(components)/SubmitInputBtn';
 
 import { getTransportationUser } from '@/getters/user';
 
