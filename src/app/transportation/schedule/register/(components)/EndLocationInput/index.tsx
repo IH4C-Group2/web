@@ -1,10 +1,18 @@
 import type { FC } from 'react';
+import type { FactoryInfo } from '@/utils/prisma';
 
-const EndLocationInput: FC = () => {
+type Props = {
+  factorys: FactoryInfo[];
+};
+
+const EndLocationInput: FC<Props> = ({ factorys }) => {
   return (
     <div>
-      
-      <input type='text' name='EndLocationInput' className="border border-black"/>
+      <select name="EndLocationInput" className="border border-black">
+        {factorys.map((factory) => (
+          <option key={factory.factoryInfoId} value={factory.factoryInfoId}>{factory.factoryDetailName}</option>
+        ))}
+      </select>
     </div>
   );
 };

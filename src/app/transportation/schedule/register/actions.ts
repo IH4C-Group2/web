@@ -4,7 +4,7 @@ import { prisma } from "@/utils/prisma";
 
 export const Schedule = async (formData: FormData) => {
   // formDataから値を取得
-  const driverId = formData.get('DriverIdInput')?.toString();
+  const driverId = formData.get('driverId')?.toString();
   const orderId = formData.get('OrderIdInput')?.toString();
   const temperature = formData.get('TemperatureInput')?.toString();
   const originFactoryId = formData.get('StartLocationInput')?.toString();
@@ -12,11 +12,19 @@ export const Schedule = async (formData: FormData) => {
   const startDatetime = formData.get('StartDateTimeInput')?.toString();
   const endDatetime = formData.get('EndDateTimeInput')?.toString();
 
+  console.log(driverId,
+    orderId,
+    temperature,
+    originFactoryId,
+    landingFactoryId,startDatetime,endDatetime
+  )
 
   // 必須フィールドが全て存在するか確認
   if (!driverId || !orderId || !temperature || !originFactoryId || !landingFactoryId || !startDatetime || !endDatetime) {
     return false;
   }
+
+  console.log('asaaa');
 
   // データ型を整数に変換
   const parsedDriverId = parseInt(driverId);
@@ -26,7 +34,7 @@ export const Schedule = async (formData: FormData) => {
 
   // 新しいスケジュールを作成
   try {
-    const InsertSchedule = await prisma.scheduleList.create({
+    await prisma.scheduleList.create({
       data: {
         driverId: parsedDriverId,
         orderId: parsedOrderId,

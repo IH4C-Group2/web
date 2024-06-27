@@ -23,9 +23,8 @@ const DriverSchedulesPage: FC = async () => {
         </button>
       </div>
       <div className="w-full flex justify-end mt-4 mr-4">
-      <button type='submit' className="text-green-600">ドライバースケジュール新規登録</button>
+      <Link href={'/transportation/schedule/register'} className="text-green-600">ドライバースケジュール新規登録</Link>
       </div>
-      
       <div className="w-full bg-blue-900 mt-4 p-4">
         <table className="min-w-full bg-gray-300">
           <thead>
@@ -43,15 +42,15 @@ const DriverSchedulesPage: FC = async () => {
             </tr>
           </thead>
           <tbody>
-            {schedules.map(schedule => (     
+            {schedules.map(schedule => (
           <tr key={schedule.scheduleListId}>
                 <td className="border px-4 py-2 text-center">{schedule.scheduleListId}</td>
-                <td className="border px-4 py-2 text-center">{schedule.driverId}</td>
+                <td className="border px-4 py-2 text-center">{schedule.driver.driverName}</td>
                 <td className="border px-4 py-2 text-center">{schedule.orderId}</td>
                 <td className="border px-4 py-2 text-center">{schedule.temperature}</td>
-                <td className="border px-4 py-2 text-center">{schedule.originFactoryId}</td>
+                <td className="border px-4 py-2 text-center">{schedule.originFactory.factoryDetailName}</td>
                 <td className="border px-4 py-2 text-center">{new Date(schedule.startDatetime).toLocaleString()}</td>
-                <td className="border px-4 py-2 text-center">{schedule.landingFactoryId}</td>
+                <td className="border px-4 py-2 text-center">{schedule.landingFactory.factoryDetailName}</td>
                 <td className="border px-4 py-2 text-center">{new Date(schedule.endDatetime).toLocaleString()}</td>
                 <td className="border px-4 py-2 text-center"><Link href={`/transportation/schedule/edit/${schedule.scheduleListId}`} >編集</Link></td>
                 <td className="border px-4 py-2 text-center"><DelteButton id={schedule.scheduleListId} /></td>
