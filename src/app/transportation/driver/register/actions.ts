@@ -43,7 +43,7 @@ export const register = async (formData: FormData): Promise<ErrorType> => {
       data: {
         driverName,
         driverTel,
-        employeeNum: Number(employeeNum),
+        employeeNum: employeeNum,
         driverLicense,
         transportationUserId: Number(transportationUser?.transportationUserId),
         loginId,
