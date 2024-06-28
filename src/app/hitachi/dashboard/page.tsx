@@ -17,7 +17,7 @@ const Dashboard: FC = () => {
           <FontAwesomeIcon icon={faBuildingUser} className="w-16 h-16 mb-2" />
           <span>会社詳細情報管理</span>
         </Link>
-        <Link href="/factory-management" className="flex flex-col items-center justify-center w-48 h-48 bg-gray-400 text-white rounded-lg shadow-md transition duration-300 hover:bg-gray-500">
+        <Link href="/hitachi/factory/list" className="flex flex-col items-center justify-center w-48 h-48 bg-gray-400 text-white rounded-lg shadow-md transition duration-300 hover:bg-gray-500">
           <FontAwesomeIcon icon={faHouseUser} className="w-16 h-16 mb-2" />
           <span>工場管理</span>
         </Link>
