@@ -1,5 +1,7 @@
 import type { FC } from 'react';
 
+import Link from 'next/link';
+
 import { factoryRegister } from './actions';
 import Form from './(components)/Form';
 //factoryUser
@@ -23,6 +25,7 @@ const FactoryRegister: FC = () => {
     return (
         <div className="min-h-screen">
             <h1>工場新規登録</h1>
+            <Link href={'/hitachi/factory/list'}>工場一覧に戻る</Link>
             <Form action={handleSubmit}>
                 <LoginIdInput />
                 <PasswordInput />
@@ -33,7 +36,6 @@ const FactoryRegister: FC = () => {
                 <ResponsibleTELInput />
                 <OfficeTELInput />
                 <button type="submit">登録</button>
-                <button type="reset">取消</button>
             </Form>
         </div>
     );
