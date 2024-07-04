@@ -48,6 +48,9 @@ model TransportationUser {
   loginId               String                 @unique
   password              String
   UserName              String
+  address               String
+  officeTelTel          String
+  responsibleName       String
   companyId             String?
   transportationDrivers TransportationDriver[] @relation(name: "transportationUsers")
 }
