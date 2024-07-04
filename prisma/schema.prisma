@@ -49,7 +49,7 @@ model TransportationUser {
   password              String
   UserName              String
   address               String
-  officeTelTel          String
+  officeTel             String
   responsibleName       String
   companyId             String?
   transportationDrivers TransportationDriver[] @relation(name: "transportationUsers")
