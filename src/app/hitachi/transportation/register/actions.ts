@@ -9,10 +9,13 @@ export const transportaion = async (formData: FormData) => {
     const loginId = formData.get('loginId')?.toString();
     const password = formData.get('password')?.toString();
     const Username = formData.get('username')?.toString();
+    const address = formData.get('address')?.toString();
+    const responsibleName = formData.get('responsibleName')?.toString();
+    const officeTel = formData.get('officeTEL')?.toString();
 
     // 必須項目が全て揃っているか確認
-    if (!loginId || !password || !Username) {
-        console.log({ loginId, password, Username });
+    if (!loginId || !password || !Username || !address || !responsibleName ||  !officeTel) {
+        console.log({ loginId, password, Username, address, responsibleName, officeTel });
         return false;
     }
 
@@ -30,7 +33,10 @@ export const transportaion = async (formData: FormData) => {
                     loginId,
                     password: SHA256(password).toString(),
                     UserName: Username,
-                    companyId: null
+                    companyId: null,
+                    address,
+                    responsibleName,
+                    officeTel: officeTel
                 }
             });
 
