@@ -23,13 +23,13 @@ const ScheduleRegister: FC = async () => {
     return result;
   };
 
-  const user = await getTransportationUser();
-  const factorys = await prisma.factoryInfo.findMany();
-  const drivers = await prisma.transportationDriver.findMany({
-    where: {
-      transportationUserId: user?.transportationUserId
-    }
-  });
+  // const user = await getTransportationUser();
+  // const factorys = await prisma.factoryInfo.findMany();
+  // const drivers = await prisma.transportationDriver.findMany({
+  //   where: {
+  //     transportationUserId: user?.transportationUserId
+  //   }
+  // });
 
   return (
     <div className="">
