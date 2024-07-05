@@ -47,7 +47,9 @@ const DriverList: FC = () => {
 
   return (
     <div className="min-h-screen">
-      <p>ドライバー一覧</p>
+      <header>
+        <h1>ドライバー管理画面/編集</h1>
+      </header>
       <table className="min-w-full bg-white">
         <thead>
           <tr>

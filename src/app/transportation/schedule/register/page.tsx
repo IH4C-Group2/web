@@ -34,10 +34,10 @@ const ScheduleRegister: FC = async () => {
   return (
     <div className="">
       <header>
-      <h1 className="flex justify-center items-center">ドライバースケジュール登録</h1>
+        <h1>ドライバースケジュール登録</h1>
       </header>
-      <div className="bg-white m-16">
-
+      <div className="yohaku">
+        
       </div>
       <div className="">
         <div className="bg-blue-900 flex justify-center items-center min-h-screen">

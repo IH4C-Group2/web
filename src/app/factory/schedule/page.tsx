@@ -9,8 +9,8 @@ const SchedulesPage: FC = async () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-white">
-    <header className="w-full bg-blue-900 text-white text-center py-6">
-      <h1 className="text-2xl font-bold">運送スケジュール一覧</h1>
+    <header>
+      <h1>運送スケジュール一覧</h1>
     </header>
     <div className="w-full flex justify-start mt-4 ml-4">
       <button type='submit' className="text-black text-xl hover:text-gray-500 hover:shadow-lg transition duration-300">
