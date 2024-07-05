@@ -5,6 +5,9 @@ import Form from './(components)/Form';
 import LoginIdInput from './(components)/LoginIdInput';
 import PasswordInput from './(components)/PasswordInput';
 import UserNameInput from './(components)/UserNameInput';
+import OfficeTELInput from './(components)/OfficeTELInput';
+import ResponsibleNameInput from './(components)/ResponsibleNameInput';
+import AddressInput from './(components)/AddressInput';
 import SubmitInputBtn from './(components)/SubmitInputBtn';
 
 const TransportaionRegister: FC = () => {
@@ -20,6 +23,9 @@ const TransportaionRegister: FC = () => {
                 <LoginIdInput />
                 <PasswordInput />
                 <UserNameInput />
+                <AddressInput />
+                <OfficeTELInput />
+                <ResponsibleNameInput />
                 <SubmitInputBtn />
             </Form>
         </div>
