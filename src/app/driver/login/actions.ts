@@ -23,7 +23,7 @@ export const login = async (formData: FormData) => {
   if (!user) return false;
 
   const token = sign({
-    id: user.drivertId,
+    id: user.driverId,
     type: 'driver'
   }, Config.jwtSecret);
 

@@ -38,6 +38,9 @@ model FactoryInfo {
   responsibleTel    String
   officeTel         String
   factoryUserIds    FactoryUser @relation(name: "factoryUsers", fields: [factoryUserId], references: [factoryUserId])
+
+  originSchedules  ScheduleList[] @relation(name: "OriginFactory")
+  landingSchedules ScheduleList[] @relation(name: "LandingFactory")
 }
 
 model TransportationUser {
@@ -45,12 +48,15 @@ model TransportationUser {
   loginId               String                 @unique
   password              String
   UserName              String
+  address               String
+  officeTel             String
+  responsibleName       String
   companyId             String?
   transportationDrivers TransportationDriver[] @relation(name: "transportationUsers")
 }
 
 model TransportationDriver {
-  driverId             Int                @id @default(autoincrement())
+  driverId              Int                @id @default(autoincrement())
   transportationUserId  Int
   loginId               String             @unique
   password              String
@@ -82,6 +88,9 @@ model ScheduleList {
   landingFactoryId Int
   startDatetime    DateTime
   endDatetime      DateTime
+
+  originFactory  FactoryInfo @relation(name: "OriginFactory", fields: [originFactoryId], references: [factoryInfoId])
+  landingFactory FactoryInfo @relation(name: "LandingFactory", fields: [landingFactoryId], references: [factoryInfoId])
 
   @@unique([orderId])
 }

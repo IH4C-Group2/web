@@ -56,7 +56,7 @@ export const register = async (formData: FormData): Promise<ErrorType> => {
       data: {
         driverName,
         driverTel,
-        employeeNum,
+        employeeNum: employeeNum,
         driverLicense,
         transportationUserId: Number(transportationUser?.transportationUserId),
         loginId,
