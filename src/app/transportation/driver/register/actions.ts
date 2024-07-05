@@ -4,6 +4,10 @@ import { prisma } from "@/utils/prisma";
 import { getTransportationUser } from '@/getters/user';
 import { SHA256 } from 'crypto-js';
 
+import { safeParse } from 'valibot';
+import { userSchema } from "@/types/form/validation";
+import { transportationScheme } from "@/types/form/validation";
+
 export type ErrorType = {
   status: boolean;
   message: string;
@@ -11,12 +15,21 @@ export type ErrorType = {
 
 export const register = async (formData: FormData): Promise<ErrorType> => {
   const transportationUser = await getTransportationUser();
+
   const employeeNum = formData.get('employeeNum')?.toString();
   const driverName = formData.get('driverName')?.toString();
   const driverTel = formData.get('driverTel')?.toString();
   const driverLicense = formData.get('driverLicense')?.toString();
   const loginId = formData.get('loginId')?.toString();
   const password = formData.get('password')?.toString();
+
+  // const { success, output, issues } = safeParse(userSchema, {
+  //   loginId: loginId,
+  //   password: password,
+  // });
+  // if (!success) {
+  //   return { status: false, message: issues[0].message };
+  // }
 
   if (!employeeNum || !driverName || !driverTel || !driverLicense || !loginId || !password) {
     return {
