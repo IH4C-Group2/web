@@ -2,19 +2,17 @@
 
 import type { FC } from 'react';
 
-import ErrorMessage from '../ErrorMessage';
-
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { pipe, object, string, number, minLength, maxLength, regex, minValue } from 'valibot';
 import { valibotResolver } from '@hookform/resolvers/valibot';
 
-type props = {
-  defaultLoginId?: string;
-};
+import ErrorMessage from '../ErrorMessage';
 
-const LoginIdInput: FC<props> = ({ defaultLoginId }) => {
-  const [loginId, setLoginId] = useState(defaultLoginId);
+const LoginIdInput: FC = () => {
+  const [loginId, setLoginId] = useState('');
+
+  console.log(loginId);
 
   const {
     register,
@@ -31,7 +29,7 @@ const LoginIdInput: FC<props> = ({ defaultLoginId }) => {
       ),
     ),
     defaultValues: {
-      loginId: defaultLoginId,
+      loginId,
     },
   });
 
@@ -45,7 +43,6 @@ const LoginIdInput: FC<props> = ({ defaultLoginId }) => {
       <input
         {...register('loginId')}
         type='text'
-        name='loginId'
         onChange={e => {
           setLoginId(e.target.value.replaceAll('\r\n', '\n'));
         }}
