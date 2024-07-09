@@ -24,7 +24,9 @@ const FactoryRegister: FC = () => {
 
     return (
         <div className="min-h-screen">
-            <h1>工場新規登録</h1>
+            <header>
+                <h1>工場新規登録</h1>
+            </header>
             <Link href={'/hitachi/factory/list'}>工場一覧に戻る</Link>
             <Form action={handleSubmit}>
                 <LoginIdInput />

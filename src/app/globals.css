@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* base styles*/
+/* header*/
+@layer base {
+  header {
+    @apply w-full bg-blue-900 text-white text-center py-6;
+  }
+  /* header h1 */
+  header h1 {
+    @apply text-2xl;
+  }
+}
+
+/* components style*/
+@layer components {
+  .yohaku {
+    @apply bg-white;
+    margin: 5%;
+  }
+}
+
+/* utilities style */
+
 /*:root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
