@@ -17,7 +17,9 @@ const FactoryListPage: FC = async () => {
 
   return (
     <div className='min-h-screen'>
-      <p>工場一覧</p>
+      <header>
+        <h1>工場一覧</h1>
+      </header>
       <table className='min-w-full bg-white'>
         <thead>
           <tr>

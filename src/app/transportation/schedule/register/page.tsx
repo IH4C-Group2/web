@@ -23,21 +23,21 @@ const ScheduleRegister: FC = async () => {
     return result;
   };
 
-  const user = await getTransportationUser();
-  const factorys = await prisma.factoryInfo.findMany();
-  const drivers = await prisma.transportationDriver.findMany({
-    where: {
-      transportationUserId: user?.transportationUserId
-    }
-  });
+  // const user = await getTransportationUser();
+  // const factorys = await prisma.factoryInfo.findMany();
+  // const drivers = await prisma.transportationDriver.findMany({
+  //   where: {
+  //     transportationUserId: user?.transportationUserId
+  //   }
+  // });
 
   return (
     <div className="">
       <header>
-      <h1 className="flex justify-center items-center">ドライバースケジュール登録</h1>
+        <h1>ドライバースケジュール登録</h1>
       </header>
-      <div className="bg-white m-16">
-
+      <div className="yohaku">
+        
       </div>
       <div className="">
         <div className="bg-blue-900 flex justify-center items-center min-h-screen">
