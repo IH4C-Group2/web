@@ -1,8 +1,8 @@
 'use client'; // クライアントサイドコンポーネントとしてマーク
 
 import { FC, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation'; // 修正: next/navigationからuseRouterをインポート
 import { getAllDrivers, deleteDriver } from './actions';
+import Link from 'next/link';
 
 type Driver = {
   driverId: number;
@@ -14,7 +14,6 @@ type Driver = {
 
 const DriverList: FC = () => {
   const [drivers, setDrivers] = useState<Driver[]>([]);
-  const router = useRouter();
 
   // データを取得してステートにセットする
   useEffect(() => {
@@ -29,11 +28,6 @@ const DriverList: FC = () => {
 
     fetchData();
   }, []);
-
-  // 編集ページへの遷移関数
-  const handleEdit = (id: number) => {
-    router.push(`/driveredit/${id}`);
-  };
 
   // ドライバー削除関数
   const handleDelete = async (id: number) => {
@@ -55,6 +49,7 @@ const DriverList: FC = () => {
             <th className="border px-4 py-2 text-center">ドライバー名</th>
             <th className="border px-4 py-2 text-center">電話番号</th>
             <th className="border px-4 py-2 text-center">免許証</th>
+            <th className="border px-4 py-2 text-center">編集</th>
             <th className="border px-4 py-2 text-center">削除</th>
           </tr>
         </thead>
@@ -65,6 +60,7 @@ const DriverList: FC = () => {
               <td className="border px-4 py-2 text-center">{driver.driverName}</td>
               <td className="border px-4 py-2 text-center">{driver.driverTel}</td>
               <td className="border px-4 py-2 text-center">{driver.driverLicense}</td>
+              <td className="border px-4 py-2 text-center"><Link href={`/transportation/driver/edit/${driver.driverId}`} >編集</Link></td>
               <td className="border px-4 py-2 text-center"><button onClick={() => handleDelete(driver.driverId)}>削除</button></td>
             </tr>
           ))}
