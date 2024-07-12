@@ -46,10 +46,22 @@ const DriverList: FC = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <p>ドライバー一覧</p>
-      <table className="min-w-full bg-white">
-        <thead>
+    <div className="min-h-screen flex flex-col items-center bg-white">
+      <header className="w-full bg-blue-900 text-white text-center py-6">
+        <h1 className="text-2xl font-bold">ドライバー 一覧</h1>
+      </header>
+      <div className="w-full flex justify-start mt-4 ml-4">
+        <button type='submit' className="text-black text-xl hover:text-gray-500 hover:shadow-lg transition duration-300">
+          ≪ メニュー
+        </button>
+      </div>
+      <div className="w-full flex justify-end mt-4 mr-4">
+      <button type='submit' className="text-green-600">ドライバー新規登録</button>
+      </div>
+      
+      <div className="w-full bg-blue-900 mt-4 p-4">
+        <table className="min-w-full bg-gray-300">
+          <thead>
           <tr>
             <th className="border px-4 py-2 text-center">社員番号</th>
             <th className="border px-4 py-2 text-center">ドライバー名</th>
@@ -70,6 +82,7 @@ const DriverList: FC = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };
