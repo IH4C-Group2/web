@@ -17,8 +17,19 @@ const FactoryListPage: FC = async () => {
 
   return (
     <div className='min-h-screen'>
-      <p>工場一覧</p>
-      <table className='min-w-full bg-white'>
+      <header>
+        <h1>工場一覧</h1>
+      </header>
+      <div className="w-full flex justify-start mt-4 ml-4">
+        <button type='submit' className="text-black text-xl hover:text-gray-500 hover:shadow-lg transition duration-300">
+          ≪ メニュー
+        </button>
+      </div>
+      <div className="w-full flex justify-end mt-4 mr-4">
+      <Link href={'/hitachi/factory/register'} className="text-green-600">工場一覧 新規登録</Link>
+      </div>
+      <div className="w-full bg-blue-900 mt-4 p-4">
+        <table className="min-w-full bg-gray-300">
         <thead>
           <tr>
             <th className='border px-4 py-2 text-center'>会社名</th>
@@ -52,6 +63,7 @@ const FactoryListPage: FC = async () => {
         ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };
