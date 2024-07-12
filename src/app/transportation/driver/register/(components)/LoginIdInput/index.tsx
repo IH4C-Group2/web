@@ -1,48 +1,53 @@
 'use client';
 
-import type { FC, ReactNode } from 'react';
+import type { FC } from 'react';
 
-import { valibotResolver } from '@hookform/resolvers/valibot';
-import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { maxLength, minLength, pipe, string } from 'valibot';
+import { useEffect, useState } from 'react';
+import { pipe, object, string, number, minLength, maxLength, regex, minValue } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 
 import ErrorMessage from '../ErrorMessage';
 
 const LoginIdInput: FC = () => {
-  const [description, setDescription] = useState('');
+  const [loginId, setLoginId] = useState('');
+
+  console.log(loginId);
 
   const {
     register,
-    formState: { errors },
     trigger,
+    formState: { errors },
   } = useForm({
     mode: 'onBlur',
-    resolver: valibotResolver(pipe(string(), minLength(10, '説明文は10文字以上入力してください'), maxLength(2000, '説明文は2000文字以上は入力できません'))),
+    resolver: valibotResolver(object({
+      loginId: pipe(
+        string(),
+        minLength(8, '8文字以上、15文字以下で入力してください'),
+        maxLength(15, '8文字以上、15文字以下で入力してください'),
+        regex(/^[a-zA-Z\d]+$/, '半角英数字のみを入力してください'),
+      )
+    })),
     defaultValues: {
-      description: '',
+      loginId,
     },
   });
 
   // 検証をレンダリング時に実行
   useEffect(() => {
-    trigger('description');
+    trigger('loginId');
   }, [trigger]);
-
-  console.log(errors);
 
   return (
     <div>
-      <div>
-        <textarea
-          {...register('description')}
-          placeholder='Description (Markdown supported)'
-          onChange={e => {
-            setDescription(e.target.value.replaceAll('\r\n', '\n'));
-          }}
-        />
-        <ErrorMessage message={errors.description?.message} />
-      </div>
+      <input
+        {...register('loginId')}
+        type='text'
+        onChange={e => {
+          setLoginId(e.target.value.replaceAll('\r\n', '\n'));
+        }}
+      />
+      <ErrorMessage message={errors.loginId?.message} />
     </div>
   );
 };
