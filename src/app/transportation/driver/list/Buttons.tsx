@@ -27,15 +27,3 @@ export const DeleteButton: FC<Props> = ({ id }) => {
     </button>
   );
 };
-
-export const CreateButton: FC = () => {
-  const router = useRouter();
-
-  const handleClick = async () => {
-    router.push('/transportation/driver/register');
-  };
-
-  return (
-    <button onClick={handleClick} className="text-green-600">ドライバー新規登録</button>
-  );
-};

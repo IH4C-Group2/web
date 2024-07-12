@@ -1,8 +1,11 @@
 import { FC } from 'react';
+
 import Link from 'next/link';
 import { DeleteButton, CreateButton } from './Buttons';
+
 import { getTransportationUser } from '@/getters/user';
 import { prisma } from "@/utils/prisma";
+import Link from 'next/link';
 
 const DriverList: FC = async () => {
   const transportationUser = await getTransportationUser();
@@ -17,7 +20,7 @@ const DriverList: FC = async () => {
     }
   });
 
-  const formatDrivers= drivers.map(driver => ({
+  const formatDrivers = drivers.map(driver => ({
     driverId: driver.driverId,
     employeeNum: driver.employeeNum,
     driverName: driver.driverName,
@@ -36,7 +39,7 @@ const DriverList: FC = async () => {
         </Link>
       </div>
       <div className="w-full flex justify-end mt-4 mr-4">
-        <CreateButton />
+        <Link href="/transportation/driver/register" className='text-green-600'>ドライバー新規登録</Link>
       </div>
 
       <div className="w-full bg-blue-900 mt-4 p-4">
@@ -47,6 +50,7 @@ const DriverList: FC = async () => {
               <th className="border px-4 py-2 text-center">ドライバー名</th>
               <th className="border px-4 py-2 text-center">電話番号</th>
               <th className="border px-4 py-2 text-center">免許証</th>
+              <th className="border px-4 py-2 text-center">編集</th>
               <th className="border px-4 py-2 text-center">削除</th>
             </tr>
           </thead>
@@ -57,6 +61,7 @@ const DriverList: FC = async () => {
                 <td className="border px-4 py-2 text-center">{driver.driverName}</td>
                 <td className="border px-4 py-2 text-center">{driver.driverTel}</td>
                 <td className="border px-4 py-2 text-center">{driver.driverLicense}</td>
+                <td className="border px-4 py-2 text-center"><Link href={`/transportation/driver/edit/${driver.driverId}`} >編集</Link></td>
                 <td className="border px-4 py-2 text-center"><DeleteButton id={driver.driverId} /></td>
               </tr>
             ))}
