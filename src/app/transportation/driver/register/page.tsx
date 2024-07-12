@@ -18,19 +18,51 @@ const Register: FC = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen">
       <header>
         <h1>ドライバー登録画面</h1>
       </header>
-      <Form action={handleSubmit}>
-        社員番号:<EmployeeNumInput />
-        名前:<DriverNameInput />
-        電話番号:<DriverTelInput />
-        運転免許:<DriverLicenseInput />
-        ログインID:<LoginIdInput />
-        パスワード:<PasswordInput />
-        <button type="submit">登録</button>
-      </Form>
+      <div className="bg-white m-16"></div>
+
+      <div className="bg-blue-900 flex justify-center items-center min-h-screen">
+        <div  className="bg-gray-300  p-20">
+          <Form action={handleSubmit}>
+          <div className="flex justify-center items-center gap-40 ">
+            <div className="py-4">
+              <label>社員番号</label>
+              <EmployeeNumInput />
+            </div>
+            <div>
+              <label>名前</label>
+              <DriverNameInput />
+            </div>
+          </div>
+      
+          <div className="flex  items-center gap-40">
+            <div className="py-4">
+              <label>電話番号</label>
+              <DriverTelInput />
+            </div>
+            <div>
+              <label>運転免許</label>
+              <DriverLicenseInput />
+            </div>
+          </div>
+
+          <div className="flex justify-center items-center gap-40">
+            <div className="py-4">
+              <label>ログインID</label>
+              <LoginIdInput />
+            </div>                  
+            <div>
+              <label>パスワード</label>
+              <PasswordInput />
+            </div>
+          </div>
+          <button type="submit" className="border border-black p-100 bg-white ">登録</button>
+          </Form>
+        </div>
+    </div>
     </div>
   );
 };
