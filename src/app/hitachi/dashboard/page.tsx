@@ -13,15 +13,15 @@ const Dashboard: FC = () => {
       </header>
         <Logout />
       <div className="flex justify-center gap-10 mt-20">
-      <Link href="/factory-management" className="flex flex-col items-center justify-center w-48 h-48 bg-gray-400 text-white rounded-lg shadow-md transition duration-300 hover:bg-gray-500">
+      <Link href="/hitachi/transportation/list" className="flex flex-col items-center justify-center w-48 h-48 bg-gray-400 text-white rounded-lg shadow-md transition duration-300 hover:bg-gray-500">
           <FontAwesomeIcon icon={faBuildingUser} className="w-16 h-16 mb-2" />
-          <span>会社詳細情報管理</span>
+          <span>運送会社管理登録</span>
         </Link>
         <Link href="/hitachi/factory/list" className="flex flex-col items-center justify-center w-48 h-48 bg-gray-400 text-white rounded-lg shadow-md transition duration-300 hover:bg-gray-500">
           <FontAwesomeIcon icon={faHouseUser} className="w-16 h-16 mb-2" />
           <span>工場管理</span>
         </Link>
-        <Link href="/delivery-schedule" className="flex flex-col items-center justify-center w-48 h-48 bg-gray-400 text-white rounded-lg shadow-md transition duration-300 hover:bg-gray-500">
+        <Link href="/transportation/schedule/list" className="flex flex-col items-center justify-center w-48 h-48 bg-gray-400 text-white rounded-lg shadow-md transition duration-300 hover:bg-gray-500">
           <FontAwesomeIcon icon={faBoxesStacked} className="w-16 h-16 mb-2" />
           <span>運送スケジュール一覧</span>
         </Link>
