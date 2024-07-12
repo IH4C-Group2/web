@@ -20,9 +20,9 @@ const TransportationUsersList: FC = async () => {
         <h1>運送会社一覧/編集</h1>
       </header>
       <div className="w-full flex justify-start mt-4 ml-4">
-        <button type='submit' className="text-black text-xl hover:text-gray-500 hover:shadow-lg transition duration-300">
+        <Link href="/hitachi/dashboard" className="text-black text-xl hover:text-gray-500 hover:shadow-lg transition duration-300">
           ≪ メニュー
-        </button>
+        </Link>
       </div>
       <div className="w-full flex justify-end mt-4 mr-4">
         <Link href={'./register'} className="text-green-600">ユーザー新規登録</Link>
