@@ -19,7 +19,9 @@ const Register: FC = () => {
 
   return (
     <div>
-      <h1>ドライバー登録画面</h1>
+      <header>
+        <h1>ドライバー登録画面</h1>
+      </header>
       <Form action={handleSubmit}>
         社員番号:<EmployeeNumInput />
         名前:<DriverNameInput />
