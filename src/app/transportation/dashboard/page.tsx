@@ -13,11 +13,11 @@ const Dashboard: FC = () => {
       </header>
         <Logout />
       <div className="flex justify-center gap-10 mt-20">
-        <Link href="/factory-management" className="flex flex-col items-center justify-center w-48 h-48 bg-gray-400 text-white rounded-lg shadow-md transition duration-300 hover:bg-gray-500">
+        <Link href="/transportation/driver/list" className="flex flex-col items-center justify-center w-48 h-48 bg-gray-400 text-white rounded-lg shadow-md transition duration-300 hover:bg-gray-500">
           <FontAwesomeIcon icon={faIdCard} className="w-16 h-16 mb-2" />
           <span>ドライバー管理</span>
         </Link>
-        <Link href="/delivery-schedule" className="flex flex-col items-center justify-center w-48 h-48 bg-gray-400 text-white rounded-lg shadow-md transition duration-300 hover:bg-gray-500">
+        <Link href="/transportation/schedule/list" className="flex flex-col items-center justify-center w-48 h-48 bg-gray-400 text-white rounded-lg shadow-md transition duration-300 hover:bg-gray-500">
           <FontAwesomeIcon icon={faClockRotateLeft} className="w-16 h-16 mb-2" />
           <span>ドライバー</span>
           <span>スケジュール管理</span>
