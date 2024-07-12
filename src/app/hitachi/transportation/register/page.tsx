@@ -32,11 +32,10 @@ const TransportaionRegister: FC = () => {
                             <label>ドライバーID</label>
                             <LoginIdInput />
                         </div>
-                    
-                    <div>
-                        <label>パスワードID</label>
-                        <PasswordInput />
-                    </div>
+                        <div>
+                            <label>パスワードID</label>
+                            <PasswordInput />
+                        </div>
                     </div>
 
                     <div className="flex justify-center items-center gap-40">

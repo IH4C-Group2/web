@@ -27,18 +27,59 @@ const FactoryRegister: FC = () => {
             <header>
                 <h1>工場新規登録</h1>
             </header>
-            <Link href={'/hitachi/factory/list'}>工場一覧に戻る</Link>
-            <Form action={handleSubmit}>
-                <LoginIdInput />
-                <PasswordInput />
-                <FactoryNameInput />
-                <FactoryDetailNameInput />
-                <AddressInput />
-                <ResponsibleNameInput />
-                <ResponsibleTELInput />
-                <OfficeTELInput />
+            <div className="bg-white m-16"></div>
+
+            <div className="bg-blue-900 flex justify-center items-center min-h-screen">
+                <Link href={'/hitachi/factory/list'}>工場一覧に戻る</Link>
+                <div  className="bg-gray-300  p-20">
+                <Form action={handleSubmit}>
+                    <div className="flex justify-center items-center gap-40 ">
+                        <div className="py-4">
+                            <label> ログインID</label>
+                            <LoginIdInput />
+                        </div>
+                        <div>
+                            <label>パスワード</label>
+                            <PasswordInput />
+                        </div>
+                    </div>
+
+                    <div className="flex justify-center items-center gap-40">
+                        <div className="py-4">
+                            <label>会社名</label>
+                            <FactoryNameInput />
+                        </div>
+                        <div>
+                            <label>工場名</label>
+                            <FactoryDetailNameInput />
+                        </div>
+                    </div>
+                
+                    <div className="flex justify-center items-center gap-40">
+                        <div className="py-4">
+                            <label>住所</label>
+                            <AddressInput />
+                        </div>
+                        <div>
+                            <label>責任者</label>
+                            <ResponsibleNameInput />
+                        </div>
+                    </div>
+
+                    <div className="flex justify-center items-center gap-40">
+                        <div className="py-4">
+                            <label>責任者TEL</label>
+                            <ResponsibleTELInput />
+                        </div>
+                        <div>
+                            <label>事務所TEL</label>
+                            <OfficeTELInput />
+                        </div>
+                    </div>
                 <button type="submit">登録</button>
             </Form>
+            </div>
+        </div>
         </div>
     );
 };
