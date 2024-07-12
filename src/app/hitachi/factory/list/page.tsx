@@ -26,7 +26,7 @@ const FactoryListPage: FC = async () => {
         </button>
       </div>
       <div className="w-full flex justify-end mt-4 mr-4">
-      <Link href={'/hitachi/factory/register'} className="text-green-600">工場一覧 新規登録</Link>
+      <Link href={'/transportation/factory/register'} className="text-green-600">工場一覧 新規登録</Link>
       </div>
       <div className="w-full bg-blue-900 mt-4 p-4">
         <table className="min-w-full bg-gray-300">

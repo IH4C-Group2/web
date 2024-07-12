@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { prisma } from '@/utils/prisma';
+import Link from 'next/link';
 
 const SchedulesPage: FC = async () => {
   const schedules = await prisma.scheduleList.findMany({
@@ -13,9 +14,9 @@ const SchedulesPage: FC = async () => {
       <h1>運送スケジュール一覧</h1>
     </header>
     <div className="w-full flex justify-start mt-4 ml-4">
-      <button type='submit' className="text-black text-xl hover:text-gray-500 hover:shadow-lg transition duration-300">
+     <Link href={'/factory/dashboard'}className="text-black text-xl hover:text-gray-500 hover:shadow-lg transition duration-300">
         ≪ メニュー
-      </button>
+      </Link>
     </div>
       <table className="min-w-full bg-white">
         <thead>
