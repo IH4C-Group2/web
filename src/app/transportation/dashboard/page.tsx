@@ -8,8 +8,8 @@ import { faIdCard, faClockRotateLeft, } from '@fortawesome/free-solid-svg-icons'
 const Dashboard: FC = () => {
   return (
     <div className="min-h-screen flex flex-col items-center bg-white">
-      <header className="w-full bg-blue-900 text-white text-center py-6">
-        <h1 className="text-2xl font-bold">運送会社メニュー画面</h1>
+      <header>
+        <h1 className="">運送会社メニュー画面</h1>
       </header>
         <Logout />
       <div className="flex justify-center gap-10 mt-20">

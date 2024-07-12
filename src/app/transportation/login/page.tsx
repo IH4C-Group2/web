@@ -15,9 +15,9 @@ const Login: FC = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="w-full py-4 bg-blue-900">
+      <header>
         <h1 className='text-white text-2xl flex justify-center items-center'>運送会社ログイン画面</h1>
-      </div>
+      </header>
       <Form action={handleSubmit}>
 
         <div className='mt-16 lg:mt-32'>

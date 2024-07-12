@@ -1,0 +1,4 @@
+/* rbc-toolbarを隠す */
+.rbc-toolbar, .rbc-time-header {
+  display: none;
+}

@@ -46,6 +46,7 @@ const DriverList: FC = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="min-h-screen flex flex-col items-center bg-white">
       <header className="w-full bg-blue-900 text-white text-center py-6">
         <h1 className="text-2xl font-bold">ドライバー 一覧</h1>
@@ -62,6 +63,14 @@ const DriverList: FC = () => {
       <div className="w-full bg-blue-900 mt-4 p-4">
         <table className="min-w-full bg-gray-300">
           <thead>
+=======
+    <div className="min-h-screen">
+      <header>
+        <h1>ドライバー管理画面/編集</h1>
+      </header>
+      <table className="min-w-full bg-white">
+        <thead>
+>>>>>>> 4a562d775b823f31c3943d5ccd3fc859bea5775e
           <tr>
             <th className="border px-4 py-2 text-center">社員番号</th>
             <th className="border px-4 py-2 text-center">ドライバー名</th>
