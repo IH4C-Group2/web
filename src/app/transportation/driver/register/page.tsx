@@ -38,7 +38,7 @@ const Register: FC = () => {
             </div>
           </div>
       
-          <div className="flex justify-center items-center gap-40">
+          <div className="flex  items-center gap-40">
             <div className="py-4">
               <label>電話番号</label>
               <DriverTelInput />
@@ -59,7 +59,7 @@ const Register: FC = () => {
               <PasswordInput />
             </div>
           </div>
-          <button type="submit">登録</button>
+          <button type="submit" className="border border-black p-100 bg-white ">登録</button>
           </Form>
         </div>
     </div>

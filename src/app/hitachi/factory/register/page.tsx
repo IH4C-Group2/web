@@ -30,8 +30,9 @@ const FactoryRegister: FC = () => {
             <div className="bg-white m-16"></div>
 
             <div className="bg-blue-900 flex justify-center items-center min-h-screen">
-                <Link href={'/hitachi/factory/list'}>工場一覧に戻る</Link>
+                
                 <div  className="bg-gray-300  p-20">
+                <Link href={'/hitachi/factory/list'}>工場一覧に戻る</Link>
                 <Form action={handleSubmit}>
                     <div className="flex justify-center items-center gap-40 ">
                         <div className="py-4">
@@ -76,7 +77,7 @@ const FactoryRegister: FC = () => {
                             <OfficeTELInput />
                         </div>
                     </div>
-                <button type="submit">登録</button>
+                    <button type="submit" className="border border-black p-100 bg-white">登録</button>
             </Form>
             </div>
         </div>
