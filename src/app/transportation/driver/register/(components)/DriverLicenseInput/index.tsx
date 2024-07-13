@@ -3,6 +3,7 @@ import type { FC } from 'react';
 const DriverLicenseInput: FC = () => {
   return (
     <div>
+      <label>運転免許:</label>
       <select name='driverLicense'>
         <option value="大型免許">大型免許</option>
         <option value="中型免許">中型免許</option>

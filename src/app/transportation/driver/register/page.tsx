@@ -23,12 +23,12 @@ const Register: FC = () => {
         <h1>ドライバー登録画面</h1>
       </header>
       <Form action={handleSubmit}>
-        社員番号:<EmployeeNumInput />
-        名前:<DriverNameInput />
-        電話番号:<DriverTelInput />
-        運転免許:<DriverLicenseInput />
-        ログインID:<LoginIdInput />
-        パスワード:<PasswordInput />
+        <EmployeeNumInput />
+        <DriverNameInput />
+        <DriverTelInput />
+        <DriverLicenseInput />
+        <LoginIdInput />
+        <PasswordInput />
         <button type="submit">登録</button>
       </Form>
     </div>
