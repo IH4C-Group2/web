@@ -1,5 +1,8 @@
 import { prisma } from "@/utils/prisma";
-import { getTransportationUser } from '@/getters/user';
+
+import { revalidatePath } from 'next/cache';
+import { safeParse } from 'valibot';
+import { transportationDriverEditSchema } from "@/types/form/validation";
 
 export type ErrorType = {
   status: boolean;
@@ -13,6 +16,15 @@ export const edit = async (formData: FormData, driverId: string): Promise<ErrorT
   const driverTel = formData.get('driverTel')?.toString();
   const driverLicense = formData.get('driverLicense')?.toString();
 
+  const { success } = safeParse(transportationDriverEditSchema, {
+    employeeNum: employeeNum,
+    driverName: driverName,
+    driverTel: driverTel
+  });
+  if (!success) {
+    return { status: false, message: "入力フォーマットが違います" };
+  }
+
   if (!employeeNum || !driverName || !driverTel || !driverLicense) {
     return {
       status: false,
@@ -24,7 +36,6 @@ export const edit = async (formData: FormData, driverId: string): Promise<ErrorT
   console.log(parsedDriverId);
 
   try {
-    // const transportationDriver = 
     await prisma.transportationDriver.update({
       where: {
         driverId: parsedDriverId,
@@ -37,18 +48,11 @@ export const edit = async (formData: FormData, driverId: string): Promise<ErrorT
       }
     });
 
-    // if (!transportationDriver) {
-    //   return {
-    //     status: false,
-    //     message: "追加に失敗しました"
-    //   };
-    // }
-
+    revalidatePath(`/transportation/driver/list/`, 'layout');
     return {
       status: true,
       message: ""
-    };
-
+    }
   } catch (error) {
     console.log(error);
     return {

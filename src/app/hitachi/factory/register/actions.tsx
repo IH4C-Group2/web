@@ -3,16 +3,27 @@
 import { prisma } from "@/utils/prisma";
 import { SHA256 } from 'crypto-js';
 
-export const factoryRegister = async (formData: FormData) => {
+import { safeParse } from 'valibot';
+import { hitachiFactoryRegisterSchema } from "@/types/form/validation";
+
+export type ErrorType = {
+    status: boolean;
+    message: string;
+}
+
+export const factoryRegister = async (formData: FormData): Promise<ErrorType> => {
     //factoryUser formData取得
     const loginId = formData.get('loginId')?.toString();
     const password = formData.get('password')?.toString();
     const factoryName = formData.get('factoryName')?.toString();
 
     //factoryUser formData中身の有無
-    if (!loginId || !password || !factoryName){
-        console.log({loginId, password, factoryName});
-        return false;
+    if (!loginId || !password || !factoryName) {
+        console.log({ loginId, password, factoryName });
+        return {
+            status: false,
+            message: ''
+        };
     }
 
     //factoryUserにloginIdが存在するかどうか
@@ -21,8 +32,8 @@ export const factoryRegister = async (formData: FormData) => {
     });
 
     //同じloginIdがなかったら（nullだったら）
-    if (loginIdState == null){
-       //factoryUser formData登録
+    if (loginIdState == null) {
+        //factoryUser formData登録
         const factoryUser = await prisma.factoryUser.create({
             data: {
                 loginId,
@@ -31,9 +42,12 @@ export const factoryRegister = async (formData: FormData) => {
             }
         });
 
-        if (!factoryUser) return false;
-    }else {
-        return false;
+        if (!factoryUser) return { status: false, message: '' };
+    } else {
+        return {
+            status: false,
+            message: ''
+        };
     }
 
     //factoryInfo formData取得
@@ -54,10 +68,27 @@ export const factoryRegister = async (formData: FormData) => {
     const responsibleTel = formData.get('responsibleTEL')?.toString();
     const officeTel = formData.get('officeTEL')?.toString();
 
+    const { success } = safeParse(hitachiFactoryRegisterSchema, {
+        loginId: loginId,
+        password: password,
+        factoryName: factoryName,
+        factoryDetailName: factoryDetailName,
+        address: address,
+        responsibleName: responsibleName,
+        officeTEL: officeTel,
+        responsibleTEL: responsibleTel
+    });
+    if (!success) {
+        return { status: false, message: "入力フォーマットが違いますyo" };
+    }
+
     //factoryInfo formData中身の有無
-    if (!factoryUserId || !factoryDetailName || !address || !responsibleName || !responsibleTel || !officeTel){
-        console.log({factoryUserId, factoryDetailName, address, responsibleName, responsibleTel, officeTel});
-        return false;
+    if (!factoryUserId || !factoryDetailName || !address || !responsibleName || !responsibleTel || !officeTel) {
+        console.log({ factoryUserId, factoryDetailName, address, responsibleName, responsibleTel, officeTel });
+        return {
+            status: false,
+            message: '入力フォーマットが違います'
+        };
     }
 
     const factoryInfo = await prisma.factoryInfo.create({
@@ -71,7 +102,13 @@ export const factoryRegister = async (formData: FormData) => {
         }
     });
 
-    if (!factoryInfo) return false;
+    if (!factoryInfo) return {
+        status: false,
+        message: ''
+    }
 
-    return true;
+    return {
+        status: true,
+        message: ''
+    };
 };
