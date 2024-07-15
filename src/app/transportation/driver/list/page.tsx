@@ -5,7 +5,7 @@ import { DeleteButton, CreateButton } from './Buttons';
 
 import { getTransportationUser } from '@/getters/user';
 import { prisma } from "@/utils/prisma";
-import Link from 'next/link';
+
 
 const DriverList: FC = async () => {
   const transportationUser = await getTransportationUser();
