@@ -1,9 +1,11 @@
 import { FC } from 'react';
 
-import { DeleteButton } from './Buttons';
+import Link from 'next/link';
+import { DeleteButton, CreateButton } from './Buttons';
+
 import { getTransportationUser } from '@/getters/user';
 import { prisma } from "@/utils/prisma";
-import Link from 'next/link';
+
 
 const DriverList: FC = async () => {
   const transportationUser = await getTransportationUser();
@@ -32,9 +34,9 @@ const DriverList: FC = async () => {
         <h1 className="text-2xl font-bold">ドライバー 一覧</h1>
       </header>
       <div className="w-full flex justify-start mt-4 ml-4">
-        <button type='submit' className="text-black text-xl hover:text-gray-500 hover:shadow-lg transition duration-300">
-          ≪ メニュー
-        </button>
+        <Link href="/transportation/dashboard" className="text-black text-xl hover:text-gray-500 hover:shadow-lg transition duration-300">
+          <span>≪ メニュー</span>
+        </Link>
       </div>
       <div className="w-full flex justify-end mt-4 mr-4">
         <Link href="/transportation/driver/register" className='text-green-600'>ドライバー新規登録</Link>
