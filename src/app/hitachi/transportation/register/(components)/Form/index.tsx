@@ -1,33 +1,38 @@
 'use client';
 
+import type { ErrorType } from '../../actions';
+
 import { redirect } from 'next/navigation';
-import { useState , type FC, type PropsWithChildren } from 'react';
+import { useState, type FC, type PropsWithChildren } from 'react';
 
 type Props = {
-    action: (formData: FormData) => Promise<boolean>;
+  action: (formData: FormData) => Promise<ErrorType>;
 };
 
-const Form: FC<PropsWithChildren<Props>> = ({ children, action}) => {
-    const [error, SetError] = useState(false);
+const Form: FC<PropsWithChildren<Props>> = ({ children, action }) => {
+  const [error, SetError] = useState<ErrorType>({
+    status: false,
+    message: ''
+  });
 
-    const handleSubmit = async (formdata: FormData) => {
-        const res = await action(formdata);
+  const handleSubmit = async (formdata: FormData) => {
+    const res = await action(formdata);
 
-        if (res) redirect('./list');
+    if (res.status) redirect('./list');
 
-        SetError(false);
-    }
+    SetError(res);
+  }
 
-    return (
-        <>
-            <form action={handleSubmit}>{children}</form>
-            {error && (
-            <div>
-                <p>入力フォーマットが違います</p>
-            </div>
-            )}
-        </>
-    )
+  return (
+    <>
+      <form action={handleSubmit}>{children}</form>
+      {!error?.status && (
+        <div>
+          <p>{error.message}</p>
+        </div>
+      )}
+    </>
+  )
 }
 
 export default Form;

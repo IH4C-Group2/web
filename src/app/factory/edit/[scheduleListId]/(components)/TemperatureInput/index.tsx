@@ -1,14 +1,53 @@
+'use client';
+
 import type { FC } from 'react';
+
+import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+
+import ErrorMessage from '@/app/components/ErrorMessage';
+import { transportationScheduleSchema } from '@/types/form/validation';
 
 type Props = {
   defaultTemperatureId: string;
 };
 
 const TemperatureInput: FC<Props> = ({ defaultTemperatureId }) => {
+  const [temperature, setTemperature] = useState('');
+
+  console.log(temperature);
+
+  const {
+    register,
+    trigger,
+    formState: { errors },
+  } = useForm({
+    mode: 'onBlur',
+    resolver: valibotResolver(transportationScheduleSchema),
+    defaultValues: {
+      temperature: defaultTemperatureId,
+    },
+  });
+
+  // 検証をレンダリング時に実行
+  useEffect(() => {
+    trigger('temperature');
+  }, [trigger]);
+
   return (
     <div>
       <label>貨物内温度：</label>
-        <input type="text" name="temperature" defaultValue={defaultTemperatureId} />
+      <input
+        {...register('temperature')}
+        type="text"
+        name="temperature"
+        defaultValue={defaultTemperatureId}
+        onChange={e => {
+          setTemperature(e.target.value.replaceAll('\r\n', '\n'));
+        }}
+      />
+      <ErrorMessage message={errors.temperature?.message} />
     </div>
   );
 };
