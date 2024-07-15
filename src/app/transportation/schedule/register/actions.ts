@@ -38,7 +38,7 @@ export const Schedule = async (formData: FormData): Promise<ErrorType> => {
   if (!driverId || !orderId || !temperature || !originFactoryId || !landingFactoryId || !startDatetime || !endDatetime) {
     return {
       status: false,
-      message: "入力フォーマットが違います"
+      message: "入力されていない項目があります"
     };
   }
 

@@ -21,6 +21,7 @@ export const edit = async (formData: FormData, driverId: string): Promise<ErrorT
     driverName: driverName,
     driverTel: driverTel
   });
+  console.log(employeeNum, driverName, driverTel)
   if (!success) {
     return { status: false, message: "入力フォーマットが違います" };
   }
@@ -28,7 +29,7 @@ export const edit = async (formData: FormData, driverId: string): Promise<ErrorT
   if (!employeeNum || !driverName || !driverTel || !driverLicense) {
     return {
       status: false,
-      message: "入力フォーマットが違います"
+      message: "入力されていない項目があります"
     };
   }
 

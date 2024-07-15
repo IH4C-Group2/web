@@ -36,7 +36,7 @@ export const register = async (formData: FormData): Promise<ErrorType> => {
   if (!employeeNum || !driverName || !driverTel || !driverLicense || !loginId || !password) {
     return {
       status: false,
-      message: "入力フォーマットが違います"
+      message: "入力されていない項目があります"
     };
   }
 

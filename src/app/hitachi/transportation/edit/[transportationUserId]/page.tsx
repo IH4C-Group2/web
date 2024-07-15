@@ -35,12 +35,12 @@ const UpdatetransportationUser: FC<Props> = async ({ params: { transportationUse
         <>
           <p>ユーザーID: {transportationUserId}</p>
           <Form action={handleSubmit}>
-            <LoginIdInput defaultLoginid={userinfo.loginId}/>
+            <LoginIdInput defaultLoginid={userinfo.loginId} />
             <PasswordInput />
-            <UserNameInput defaultusername={userinfo.UserName}/>
-            <AddressInput defaultaddress={userinfo.address}/>
+            <UserNameInput defaultusername={userinfo.UserName} />
+            <AddressInput defaultaddress={userinfo.address} />
             <OfficeTELInput defaulofficeTel={userinfo.officeTel} />
-            <ResponsibleNameInput defaultResponsibleName={userinfo.responsibleName}/>
+            <ResponsibleNameInput defaultResponsibleName={userinfo.responsibleName} />
             <SubmitInputBtn />
           </Form>
         </>

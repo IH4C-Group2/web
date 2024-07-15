@@ -31,7 +31,7 @@ export const edit = async (formData: FormData, scheduleListId: string): Promise<
   if (!driverId || !orderId || !temperature || !originFactoryId || !landingFactoryId || !startDatetime || !endDatetime || !scheduleListId) {
     return {
       status: false,
-      message: "入力フォーマットが違いますyo"
+      message: "入力されていない項目があります"
     };
   }
 

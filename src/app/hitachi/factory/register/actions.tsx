@@ -16,6 +16,27 @@ export const factoryRegister = async (formData: FormData): Promise<ErrorType> =>
     const loginId = formData.get('loginId')?.toString();
     const password = formData.get('password')?.toString();
     const factoryName = formData.get('factoryName')?.toString();
+    const factoryDetailName = formData.get('factoryDetailName')?.toString();
+    const address = formData.get('address')?.toString();
+    const responsibleName = formData.get('responsibleName')?.toString();
+    const responsibleTel = formData.get('responsibleTEL')?.toString();
+    const officeTel = formData.get('officeTEL')?.toString();
+
+    const { success } = safeParse(hitachiFactoryRegisterSchema, {
+        loginId: loginId,
+        password: password,
+        factoryName: factoryName,
+        factoryDetailName: factoryDetailName,
+        address: address,
+        responsibleName: responsibleName,
+        officeTEL: officeTel,
+        responsibleTEL: responsibleTel
+    });
+    if (!success) {
+        return { status: false, message: "入力フォーマットが違います" };
+    }
+
+
 
     //factoryUser formData中身の有無
     if (!loginId || !password || !factoryName) {
@@ -62,32 +83,17 @@ export const factoryRegister = async (formData: FormData): Promise<ErrorType> =>
         }
     });
     const factoryUserId = factoryUser?.factoryUserId;
-    const factoryDetailName = formData.get('factoryDetailName')?.toString();
-    const address = formData.get('address')?.toString();
-    const responsibleName = formData.get('responsibleName')?.toString();
-    const responsibleTel = formData.get('responsibleTEL')?.toString();
-    const officeTel = formData.get('officeTEL')?.toString();
 
-    const { success } = safeParse(hitachiFactoryRegisterSchema, {
-        loginId: loginId,
-        password: password,
-        factoryName: factoryName,
-        factoryDetailName: factoryDetailName,
-        address: address,
-        responsibleName: responsibleName,
-        officeTEL: officeTel,
-        responsibleTEL: responsibleTel
-    });
-    if (!success) {
-        return { status: false, message: "入力フォーマットが違いますyo" };
-    }
+    // console.log(loginId, password, factoryName, factoryDetailName, address, responsibleName, officeTel, responsibleTel);
+
+
 
     //factoryInfo formData中身の有無
     if (!factoryUserId || !factoryDetailName || !address || !responsibleName || !responsibleTel || !officeTel) {
         console.log({ factoryUserId, factoryDetailName, address, responsibleName, responsibleTel, officeTel });
         return {
             status: false,
-            message: '入力フォーマットが違います'
+            message: '入力されていない項目があります'
         };
     }
 
