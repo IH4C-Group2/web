@@ -21,9 +21,9 @@ const FactoryListPage: FC = async () => {
         <h1>工場一覧</h1>
       </header>
       <div className="w-full flex justify-start mt-4 ml-4">
-        <button type='submit' className="text-black text-xl hover:text-gray-500 hover:shadow-lg transition duration-300">
+        <Link href="/hitachi/dashboard" className="text-black text-xl hover:text-gray-500 hover:shadow-lg transition duration-300">
           ≪ メニュー
-        </button>
+        </Link>
       </div>
       <div className="w-full flex justify-end mt-4 mr-4">
       <Link href={'/hitachi/factory/register'} className="text-green-600">工場一覧 新規登録</Link>

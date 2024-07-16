@@ -2,11 +2,19 @@
 
 import { prisma } from "@/utils/prisma";
 
-export const Schedule = async (formData: FormData) => {
+import { safeParse } from 'valibot';
+import { transportationScheduleSchema } from "@/types/form/validation";
+
+export type ErrorType = {
+  status: boolean;
+  message: string;
+}
+
+export const Schedule = async (formData: FormData): Promise<ErrorType> => {
   // formDataから値を取得
   const driverId = formData.get('driverId')?.toString();
   const orderId = formData.get('OrderIdInput')?.toString();
-  const temperature = formData.get('TemperatureInput')?.toString();
+  const temperature = formData.get('temperature')?.toString();
   const originFactoryId = formData.get('StartLocationInput')?.toString();
   const landingFactoryId = formData.get('EndLocationInput')?.toString();
   const startDatetime = formData.get('StartDateTimeInput')?.toString();
@@ -16,12 +24,22 @@ export const Schedule = async (formData: FormData) => {
     orderId,
     temperature,
     originFactoryId,
-    landingFactoryId,startDatetime,endDatetime
+    landingFactoryId, startDatetime, endDatetime
   )
+
+  const { success } = safeParse(transportationScheduleSchema, {
+    temperature: temperature,
+  });
+  if (!success) {
+    return { status: false, message: "入力フォーマットが違います" };
+  }
 
   // 必須フィールドが全て存在するか確認
   if (!driverId || !orderId || !temperature || !originFactoryId || !landingFactoryId || !startDatetime || !endDatetime) {
-    return false;
+    return {
+      status: false,
+      message: "入力されていない項目があります"
+    };
   }
 
   console.log('asaaa');
@@ -48,9 +66,15 @@ export const Schedule = async (formData: FormData) => {
 
 
     // データ作成に成功した場合
-    return true;
+    return {
+      status: true,
+      message: ""
+    }
   } catch (error) {
     console.error("Error creating schedule:", error);
-    return false;
+    return {
+      status: false,
+      message: ""
+    }
   }
 };

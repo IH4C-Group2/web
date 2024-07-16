@@ -37,56 +37,56 @@ const ScheduleRegister: FC = async () => {
         <h1>ドライバースケジュール登録</h1>
       </header>
       <div className="yohaku">
-        
+
       </div>
       <div className="">
         <div className="bg-blue-900 flex justify-center items-center min-h-screen">
           <div className="bg-gray-300  p-20">
-          <Form action={handleSubmit}>
-            <div className="flex justify-center items-center gap-40 ">
-              <div className="py-4">
-                <label>ドライバーID</label>
-                <DriverInput drivers={drivers} />
-              </div>
-              <div>
-                <label>オーダーID</label>
-                <OrderIdInput />
-              </div>
-            </div>
-
-            <div className="flex justify-center items-center gap-40">
-              <div className="py-4">
-                <label>貨物内温度</label>
-                <TemperatureInput />
-              </div>
-              <div>
-                <label>出発地</label>
-                <StartLocationInput factorys={factorys} />
-              </div>
-            </div>
-
-            <div className="flex justify-center items-center gap-40">
-              <div className="p-200 py-4">
-                <label>作業開始予定</label>
-                <StartDateTimeInput />
+            <Form action={handleSubmit}>
+              <div className="flex justify-center items-center gap-40 ">
+                <div className="py-4">
+                  <label>ドライバーID</label>
+                  <DriverInput drivers={drivers} />
+                </div>
+                <div>
+                  <label>オーダーID</label>
+                  <OrderIdInput />
+                </div>
               </div>
 
-              <div>
-                <label>作業終了予定</label>
-                <EndDateTimeInput />
+              <div className="flex justify-center items-center gap-40">
+                <div className="py-4">
+                  <label>貨物内温度</label>
+                  <TemperatureInput />
+                </div>
+                <div>
+                  <label>出発地</label>
+                  <StartLocationInput factorys={factorys} />
+                </div>
               </div>
-            </div>
 
-            <div className="flex justify-center items-center gap-80">
-              <div className="py-4">
-                <label>到着地</label>
-                <EndLocationInput factorys={factorys} />
+              <div className="flex justify-center items-center gap-40">
+                <div className="p-200 py-4">
+                  <label>作業開始予定</label>
+                  <StartDateTimeInput />
+                </div>
+
+                <div>
+                  <label>作業終了予定</label>
+                  <EndDateTimeInput />
+                </div>
               </div>
-              <div>
-                <SubmitInputBtn />
+
+              <div className="flex justify-center items-center gap-80">
+                <div className="py-4">
+                  <label>到着地</label>
+                  <EndLocationInput factorys={factorys} />
+                </div>
+                <div>
+                  <SubmitInputBtn />
+                </div>
               </div>
-            </div>
-          </Form>
+            </Form>
           </div>
         </div>
       </div>
