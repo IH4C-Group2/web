@@ -3,14 +3,14 @@ import { cache } from 'react';
 import { verifyToken } from '@/util/jwt';
 import { prisma } from '@/utils/prisma';
 
-export const getHitachiUser = cache(async () => {
+export const getAdmin = cache(async () => {
   const result = await verifyToken();
   if (!result.success) return null;
 
-  const hitachiUser = await prisma.hitachiUser.findUnique({ where: { hitachiId: result.payload.id } });
-  if (!hitachiUser) return null;
+  const admin = await prisma.admin.findUnique({ where: { hitachiId: result.payload.id } });
+  if (!admin) return null;
 
-  return hitachiUser;
+  return admin;
 });
 
 export const getFactoryUser = cache(async () => {

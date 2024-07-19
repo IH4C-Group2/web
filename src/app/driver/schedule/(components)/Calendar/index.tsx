@@ -28,7 +28,7 @@ const MyCalendar: FC<Props> = ({ schedules }) => {
   const now = new Date();
 
   const handleSelectEvent = (event: { id: number }) => {
-    router.push(`/driver/schedule/${event.id}`);
+    router.push(`/driver/map/${event.id}`);
   };
 
   return (
