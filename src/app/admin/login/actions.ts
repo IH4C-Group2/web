@@ -13,7 +13,7 @@ export const login = async (formData: FormData) => {
 
   if (!password || !id) return false;
 
-  const user = await prisma.hitachiUser.findUnique({
+  const user = await prisma.admin.findUnique({
     where: {
       loginId: id,
       password: SHA256(password).toString()

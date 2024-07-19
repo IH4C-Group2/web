@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model HitachiUser {
+model Admin {
   hitachiId Int    @id @default(autoincrement())
   loginId   String @unique
   password  String
